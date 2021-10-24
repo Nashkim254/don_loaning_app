@@ -1,4 +1,3 @@
-import 'package:capitalpay/Database/Services/logs.dart';
 import 'package:dio/dio.dart';
 
 
@@ -27,6 +26,6 @@ class Apis {
       connectTimeout: Apis.connectTimeout,
       receiveTimeout: Apis.receiveTimeout,
     ),
-  )..interceptors.add(Logs());
+  );
 
 }
