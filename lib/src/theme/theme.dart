@@ -46,59 +46,59 @@ ThemeData themeDataLight(BuildContext context) {
       ),
     ),
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-    headline1: GoogleFonts.openSans(
+    headline1: GoogleFonts.dmSans(
       color: whiteShadeColor,
       fontSize: 24,
       fontWeight: FontWeight.w500,
     ),
-    headline2: GoogleFonts.openSans(
+    headline2: GoogleFonts.dmSans(
       color: primaryLight,
       fontSize: 24,
       fontWeight: FontWeight.w700,
     ),
-    headline3: GoogleFonts.openSans(
+    headline3: GoogleFonts.dmSans(
       color: primaryLight,
       fontSize: 20,
       fontWeight: FontWeight.w700,
     ),
-    headline4: GoogleFonts.openSans(
+    headline4: GoogleFonts.dmSans(
       color: primaryLight,
       fontSize: 14,
       fontWeight: FontWeight.bold,
     ),
-      headline5: GoogleFonts.openSans(
+      headline5: GoogleFonts.dmSans(
         color: backgroundLight,
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
-    bodyText1: GoogleFonts.openSans(
+    bodyText1: GoogleFonts.dmSans(
       color: blackColor,
       fontSize: 16.0,
       fontWeight: FontWeight.w500
     ),
-    bodyText2: GoogleFonts.openSans(
+    bodyText2: GoogleFonts.dmSans(
       color: primaryLight,
-      fontSize: 14.0,
+      fontSize: 24.0,
     ),
-    subtitle1: GoogleFonts.openSans(
+    subtitle1: GoogleFonts.dmSans(
       color: whiteShadeColor,
       fontSize: 16.0,
     ),
-    subtitle2: GoogleFonts.openSans(
+    subtitle2: GoogleFonts.dmSans(
       color: accentLight,
       fontSize: 12.0,
     ),
-    button: GoogleFonts.openSans(
+    button: GoogleFonts.dmSans(
       color: backgroundLight,
       fontSize: 16.0,
       fontWeight: FontWeight.normal,
     ),
-      caption: GoogleFonts.openSans(
+      caption: GoogleFonts.dmSans(
       color: backgroundLight,
       fontSize: 12.0,
       fontWeight: FontWeight.w400,
     ),
-      overline: GoogleFonts.openSans(
+      overline: GoogleFonts.dmSans(
         color: homeWidgetColor,
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
@@ -149,59 +149,59 @@ ThemeData themeDataDark(BuildContext context) {
       ),
     ),
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-      headline1: GoogleFonts.openSans(
+      headline1: GoogleFonts.dmSans(
         color: whiteShadeColor,
         fontSize: 24,
         fontWeight: FontWeight.w500,
       ),
-      headline2: GoogleFonts.openSans(
+      headline2: GoogleFonts.dmSans(
         color: primaryLight,
         fontSize: 24,
         fontWeight: FontWeight.w700,
       ),
-      headline3: GoogleFonts.openSans(
+      headline3: GoogleFonts.dmSans(
         color: primaryLight,
         fontSize: 20,
         fontWeight: FontWeight.w700,
       ),
-      headline4: GoogleFonts.openSans(
+      headline4: GoogleFonts.dmSans(
         color: primaryLight,
         fontSize: 14,
         fontWeight: FontWeight.bold,
       ),
-      headline5: GoogleFonts.openSans(
+      headline5: GoogleFonts.dmSans(
         color: backgroundLight,
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
-      bodyText1: GoogleFonts.openSans(
+      bodyText1: GoogleFonts.dmSans(
           color: accentDark,
           fontSize: 14.0,
           fontWeight: FontWeight.w400
       ),
-      bodyText2: GoogleFonts.openSans(
+      bodyText2: GoogleFonts.dmSans(
         color: primaryLight,
         fontSize: 14.0,
       ),
-      subtitle1: GoogleFonts.openSans(
+      subtitle1: GoogleFonts.dmSans(
         color: whiteShadeColor,
         fontSize: 16.0,
       ),
-      subtitle2: GoogleFonts.openSans(
+      subtitle2: GoogleFonts.dmSans(
         color: accentLight,
         fontSize: 12.0,
       ),
-      button: GoogleFonts.openSans(
+      button: GoogleFonts.dmSans(
         color: backgroundLight,
         fontSize: 16.0,
         fontWeight: FontWeight.normal,
       ),
-      caption: GoogleFonts.openSans(
+      caption: GoogleFonts.dmSans(
         color: backgroundLight,
         fontSize: 12.0,
         fontWeight: FontWeight.w400,
       ),
-      overline: GoogleFonts.openSans(
+      overline: GoogleFonts.dmSans(
         color: homeWidgetColor,
         fontSize: 16.0,
         fontWeight: FontWeight.w600,

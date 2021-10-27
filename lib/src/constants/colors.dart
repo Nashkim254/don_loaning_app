@@ -4,16 +4,16 @@
 
 import 'package:flutter/material.dart';
 
-Color primaryColor = const Color(0xff1D275C);
-Color primaryLight = const Color(0xff1D275C);
-Color primaryDark = const Color(0xff0f142e);
+Color primaryColor = const Color(0xff22B3CC);
+Color primaryLight = const Color(0xff048480);
+Color primaryDark = const Color(0xff085D5D);
 Color primaryBright = const Color(0xff8e93ae);
 Color appBarBackground = const Color(0xffFFFFFF);
 Color bodyBackground = const Color(0xffF6F6F6);
 Color dialogContent = const Color(0xffFCFCFC);
 
 // Accent Color
-Color accentColor = const Color(0xff1D275C);
+Color accentColor = const Color(0xff79111E);
 Color accentLight = const Color(0xff1D275C);
 Color accentDark = const Color(0xffEF5E41);
 Color accentBright = const Color(0xfff5d0c8);
