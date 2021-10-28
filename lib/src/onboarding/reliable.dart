@@ -1,10 +1,11 @@
 import 'package:don/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
-class Available extends StatelessWidget {
-  const Available({Key? key}) : super(key: key);
-  static const routeName = '/available';
+class Reliable extends StatelessWidget {
+  const Reliable({Key? key}) : super(key: key);
+  static const routeName = '/reliable';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class Available extends StatelessWidget {
                 right: 138.w,
                 top: 97.0.h,
               ),
-              child: Text("Available",
+              child: Text("Reliable",
                   style: TextStyle(
                       color: blackColor,
                       fontSize: 20.sp,
@@ -28,17 +29,18 @@ class Available extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 96.0.w, top: 7.h, right: 70.w),
               child: Text(
-                "With a loan, you are not alone",
+                "Coming at your financial, \n            rescue",
                 style: TextStyle(
                     color: primaryColor,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400),
               ),
-            ),
+            ),  
             Padding(
-              padding: EdgeInsets.only(top: 84.h, left: 51.w, right: 88.w),
-              child: Image.asset("assets/images/available.png"),
-            ),
+                padding: EdgeInsets.only(top: 87.h, left: 113.w, right: 59.w),
+                child: SvgPicture.asset("assets/images/reliable.svg")
+                //Image.asset("assets/images/available.png"),
+                ),
             Row(
               children: [
                 Padding(
@@ -86,7 +88,7 @@ class Available extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 33.h),
               child: GestureDetector(
-                onTap: () {},
+                onTap:(){},
                 child: Container(
                     height: 31.h,
                     width: double.infinity,
@@ -106,7 +108,7 @@ class Available extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 10.h),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/efficient'),
+                onTap: () => Navigator.pushNamed(context, '/reliable'),
                 child: Container(
                   height: 31.h,
                   width: double.infinity,

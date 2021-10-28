@@ -1,10 +1,11 @@
 import 'package:don/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
-class Available extends StatelessWidget {
-  const Available({Key? key}) : super(key: key);
-  static const routeName = '/available';
+class Efficient extends StatelessWidget {
+  const Efficient({Key? key}) : super(key: key);
+  static const routeName = '/efficient';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class Available extends StatelessWidget {
                 right: 138.w,
                 top: 97.0.h,
               ),
-              child: Text("Available",
+              child: Text("Efficient",
                   style: TextStyle(
                       color: blackColor,
                       fontSize: 20.sp,
@@ -28,7 +29,7 @@ class Available extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 96.0.w, top: 7.h, right: 70.w),
               child: Text(
-                "With a loan, you are not alone",
+                "If money is the problem, \n nmake us your solution",
                 style: TextStyle(
                     color: primaryColor,
                     fontSize: 14.sp,
@@ -36,8 +37,9 @@ class Available extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 84.h, left: 51.w, right: 88.w),
-              child: Image.asset("assets/images/available.png"),
+              padding: EdgeInsets.only(top: 87.h, left: 107.w, right: 107.w),
+              child: SvgPicture.asset("assets/images/efficient.svg")
+              //Image.asset("assets/images/available.png"),
             ),
             Row(
               children: [
@@ -85,28 +87,25 @@ class Available extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 33.h),
-              child: GestureDetector(
-                onTap: () {},
-                child: Container(
-                    height: 31.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: primaryColor,
-                        )),
-                    child: Center(
-                      child: Text(
-                        "Log In",
-                        style: TextStyle(color: primaryColor, fontSize: 16.sp),
-                      ),
-                    )),
-              ),
+              child: Container(
+                  height: 31.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: primaryColor,
+                      )),
+                  child: Center(
+                    child: Text(
+                      "Log In",
+                      style: TextStyle(color: primaryColor, fontSize: 16.sp),
+                    ),
+                  )),
             ),
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 10.h),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/efficient'),
+                onTap:()=>Navigator.pushNamed(context, '/reliable'),
                 child: Container(
                   height: 31.h,
                   width: double.infinity,
