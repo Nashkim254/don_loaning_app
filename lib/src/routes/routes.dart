@@ -1,6 +1,7 @@
 import 'package:don/src/onboarding/available.dart';
 import 'package:don/src/onboarding/efficient.dart';
 import 'package:don/src/onboarding/reliable.dart';
+import 'package:don/src/registration/register.dart';
 import 'package:don/src/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,8 @@ class MyRouter {
               return const Efficient();
                case Reliable.routeName:
               return const Reliable();
+              case Register.routeName:
+              return const Register();
             default:
               return const SplashScreen();
           }

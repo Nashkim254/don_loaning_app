@@ -9,6 +9,7 @@ class Reliable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: pinBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,7 +109,7 @@ class Reliable extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 10.h),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/reliable'),
+                onTap: () => Navigator.pushNamed(context, '/register'),
                 child: Container(
                   height: 31.h,
                   width: double.infinity,
