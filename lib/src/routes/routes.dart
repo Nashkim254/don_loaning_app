@@ -1,6 +1,7 @@
 import 'package:don/src/onboarding/available.dart';
 import 'package:don/src/onboarding/efficient.dart';
 import 'package:don/src/onboarding/reliable.dart';
+import 'package:don/src/registration/otp.dart';
 import 'package:don/src/registration/phone_number.dart';
 import 'package:don/src/registration/register.dart';
 import 'package:don/src/splashscreen/splashscreen.dart';
@@ -24,6 +25,8 @@ class MyRouter {
               return const Register();
                case Phone.routeName:
               return const Phone();
+               case Otp.routeName:
+              return const Otp();
             default:
               return const SplashScreen();
           }
