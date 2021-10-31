@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);
-static const routeName = '/register';
+  static const routeName = '/register';
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -15,7 +15,7 @@ static const routeName = '/register';
         backgroundColor: cardLightColor,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon:  Icon(Icons.arrow_back,color:blackColor),
+          icon: Icon(Icons.arrow_back, color: blackColor),
         ),
         title: Text("Register",
             style: theme.textTheme.headline5!.copyWith(
@@ -103,10 +103,15 @@ static const routeName = '/register';
             ),
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
-              child: Image.asset("assets/images/go.png"),
+              child: GestureDetector(
+                onTap: ()=> Navigator.pushNamed(context, '/phone'),
+                child: Container(
+                  child: Image.asset("assets/images/go.png"),
+                ),
+              ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 40.h,left:61.w),
+              padding: EdgeInsets.only(top: 40.h, left: 61.w),
               child: Row(
                 children: [
                   Checkbox(
@@ -114,7 +119,7 @@ static const routeName = '/register';
                     value: true,
                     onChanged: (value) {},
                   ),
-                  SizedBox(width:5.w),
+                  SizedBox(width: 5.w),
                   RichText(
                     text: TextSpan(
                       text: 'I accept these',
@@ -122,7 +127,8 @@ static const routeName = '/register';
                       children: <TextSpan>[
                         TextSpan(
                           text: ' Terms of Use',
-                          style: TextStyle(color: primaryColor, fontSize: 10.sp),
+                          style:
+                              TextStyle(color: primaryColor, fontSize: 10.sp),
                         ),
                         TextSpan(
                           text: ' and ',
@@ -130,7 +136,8 @@ static const routeName = '/register';
                         ),
                         TextSpan(
                           text: ' Privacy Policy',
-                          style: TextStyle(color: primaryColor, fontSize: 10.sp),
+                          style:
+                              TextStyle(color: primaryColor, fontSize: 10.sp),
                         )
                       ],
                     ),
