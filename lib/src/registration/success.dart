@@ -7,11 +7,14 @@ class Success extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
         backgroundColor: pinBackgroundColor,
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height:146.h),
               Container(
                 height: 118.h,
                 width: 118.h,
@@ -26,6 +29,17 @@ class Success extends StatelessWidget {
                     color: cardLightColor,
                   ),
                 ),
+              ),
+              SizedBox(height: 53.h),
+              Text(
+                "Account Created!",
+                style: theme.textTheme.bodyText1!
+                    .copyWith(color: primaryColor, fontSize: 30.sp),
+              ),
+              Text(
+                "Your account has been created\n                successfully",
+                style: theme.textTheme.bodyText1!
+                    .copyWith(color: blackColor, fontSize: 14.sp),
               ),
             ],
           ),

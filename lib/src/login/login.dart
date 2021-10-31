@@ -77,9 +77,20 @@ class Login extends StatelessWidget {
               ),
             ),
             Padding(
+              padding: EdgeInsets.only(left: 47.w, top: 12.h),
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Forgot password?",
+                  style: theme.textTheme.bodyText1!
+                      .copyWith(color: primaryColor, fontSize: 10.sp),
+                ),
+              ),
+            ),
+            Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
               child: GestureDetector(
-                onTap: ()=> Navigator.pushNamed(context, '/home'),
+                onTap: () => Navigator.pushNamed(context, '/home'),
                 child: Container(
                   child: Image.asset("assets/images/go.png"),
                 ),
@@ -113,7 +124,7 @@ class Login extends StatelessWidget {
                           text: ' Privacy Policy',
                           style:
                               TextStyle(color: primaryColor, fontSize: 10.sp),
-                        )
+                        ),
                       ],
                     ),
                   ),
