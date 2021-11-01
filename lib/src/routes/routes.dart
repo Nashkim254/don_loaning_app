@@ -26,7 +26,7 @@ class MyRouter {
                case Phone.routeName:
               return const Phone();
                case Otp.routeName:
-              return const Otp();
+              return  Otp();
             default:
               return const SplashScreen();
           }
