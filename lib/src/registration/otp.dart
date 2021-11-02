@@ -1,4 +1,5 @@
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/helpers/numeric_keyboard.dart';
 import 'package:don/src/registration/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,43 +46,7 @@ class Otp extends StatelessWidget {
               ),
             ),
             SizedBox(height: 22.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  height: 60.h,
-                  width: 60.h,
-                  decoration: BoxDecoration(
-                    color: cardLightColor,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Container(
-                  height: 60.h,
-                  width: 60.h,
-                  decoration: BoxDecoration(
-                    color: cardLightColor,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Container(
-                  height: 60.h,
-                  width: 60.h,
-                  decoration: BoxDecoration(
-                    color: cardLightColor,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Container(
-                  height: 60.h,
-                  width: 60.h,
-                  decoration: BoxDecoration(
-                    color: cardLightColor,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ],
-            ),
+            
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -98,6 +63,17 @@ class Otp extends StatelessWidget {
                   // controller.otpNumberWidget(2),
                   // controller.otpNumberWidget(3)
                 ],
+              ),
+            ),
+             Container(
+              child: NumericKeyboard(
+                onKeyboardTap: controller.onKeyboardTap,
+                textColor: Theme.of(context).primaryColor,
+                rightIcon: Icon(
+                  Icons.backspace_outlined,
+                  color: Theme.of(context).primaryColor,
+                ),
+                rightButtonFn: () => controller.updateSelect(),
               ),
             ),
           ],

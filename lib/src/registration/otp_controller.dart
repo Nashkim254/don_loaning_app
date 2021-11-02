@@ -23,4 +23,8 @@ class SignInOtpController extends GetxController {
       return "value connot be empty";
     }
   }
+  updateSelect() {
+    otpController.text = otpController.text.substring(0, otpController.text.length - 1);
+    update();
+  }
 }
