@@ -13,19 +13,20 @@ class HomeView extends StatelessWidget {
     return Scaffold(
         backgroundColor: pinBackgroundColor,
         appBar: AppBar(
-          backgroundColor: pinBackgroundColor,
-          leading: SvgPicture.asset("assets/images/logohome.svg"),
+          leading: Image.asset("assets/images/logo.png"),
           title: Text(
             "Hi, John Doe",
             style: theme.textTheme.bodyText1!.copyWith(),
           ),
           actions: [
-            SvgPicture.asset("assets/images/notify.svg"),
-            SvgPicture.asset("assets/images/profile.svg")
+            Image.asset("assets/images/notify.png"),
+            Image.asset("assets/images/profile.png")
           ],
         ),
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 30.0, right: 30, top: 29),
@@ -60,7 +61,7 @@ class HomeView extends StatelessWidget {
                       ),
                       ShakeTransition(
                         child: Padding(
-                          padding:  EdgeInsets.only(left:18.0),
+                          padding: EdgeInsets.only(left: 18.0),
                           child: Card(
                             elevation: 5,
                             child: Container(
@@ -71,49 +72,70 @@ class HomeView extends StatelessWidget {
                                 color: cardLightColor,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       "REQUEST LOAN",
-                                      style: theme.textTheme.bodyText1!.copyWith(
-                                          color: primaryColor, fontSize: 11),
+                                      style: theme.textTheme.bodyText1!
+                                          .copyWith(
+                                              color: primaryColor,
+                                              fontSize: 11),
                                     ),
                                   ),
-                                  SvgPicture.asset("assets/images/forth.svg")
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.asset("assets/images/forth.png"),
+                                  )
                                 ],
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 23.h, left: 30.w),
-                        child: Text(
-                          "Quick Actions",
-                          style: theme.textTheme.bodyText2!.copyWith(
-                            color: blackColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ShakeTransition(
-                            child: Container(
-                              height: 89.h,
-                              width: 140.w,
-                              decoration: BoxDecoration(
-                                  color: cardLightColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Column(
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 23.h, left: 30.w),
+                child: Text(
+                  "Quick Actions",
+                  style: theme.textTheme.bodyText2!.copyWith(
+                    color: blackColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ShakeTransition(
+                      child: Container(
+                        height: 89.h,
+                        width: 140.w,
+                        decoration: BoxDecoration(
+                            color: cardLightColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 12.h),
+                              child: Image.asset("assets/images/list.png"),
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SvgPicture.asset("assets/images/list.svg"),
-                                  Row(children: [
-                                    Text(
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 15.w, top: 11.h),
+                                    child: Text(
                                       "View Loans\nHistory",
                                       style:
                                           theme.textTheme.bodyText2!.copyWith(
@@ -122,23 +144,41 @@ class HomeView extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SvgPicture.asset("assets/images/forth.svg")
-                                  ])
-                                ],
-                              ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child:
+                                        Image.asset("assets/images/forth.png"),
+                                  )
+                                ])
+                          ],
+                        ),
+                      ),
+                    ),
+                    ShakeTransition(
+                      child: Container(
+                          height: 89.h,
+                          width: 140.w,
+                          decoration: BoxDecoration(
+                              color: cardLightColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 12.h),
+                              child: SizedBox(
+                                  height: 31.h,
+                                  width: 31.w,
+                                  child: Image.asset(
+                                      "assets/images/efficient.png")),
                             ),
-                          ),
-                          ShakeTransition(
-                            child: Container(
-                                height: 89.h,
-                                width: 140.w,
-                                decoration: BoxDecoration(
-                                    color: cardLightColor,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Column(children: [
-                                  SvgPicture.asset("assets/images/list.svg"),
-                                  Row(children: [
-                                    Text(
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 15.w, top: 11.h),
+                                    child: Text(
                                       "Repay Due\nLoans",
                                       style:
                                           theme.textTheme.bodyText2!.copyWith(
@@ -147,19 +187,21 @@ class HomeView extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SvgPicture.asset("assets/images/forth.svg")
-                                  ])
-                                ])),
-                          )
-                        ],
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(top: 33.h, left: 30.w),
-                          child: SvgPicture.asset("assets/images/dash.svg")),
-                    ],
-                  ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child:
+                                        Image.asset("assets/images/forth.png"),
+                                  )
+                                ])
+                          ])),
+                    )
+                  ],
                 ),
-              )
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: 33.h, left: 30.w),
+                  child: SvgPicture.asset("assets/images/dash.svg")),
             ],
           ),
         ));

@@ -2,6 +2,7 @@
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/navigation/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class NavigationView extends StatefulWidget {
@@ -42,45 +43,25 @@ class _NavigationView extends State<NavigationView> {
         elevation: 6.0,
         items: [
           BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.home,
-                size: 32,
-              ),
-              icon: Icon(
-                Icons.home_outlined,
-                color: greyColor,
-                size: 30,
-              ),
-              label: "Home"),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.analytics_outlined,
-              size: 28,
-            ),
+            activeIcon: SvgPicture.asset("assets/images/homenav.svg"),
             icon: Icon(
               Icons.analytics_outlined,
               color: greyColor,
               size: 26,
             ),
-            label: "Transactions",
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.wysiwyg_outlined,
-              size: 28,
-            ),
+            activeIcon: SvgPicture.asset("assets/images/homenav.svg"),
             icon: Icon(
               Icons.wysiwyg_outlined,
               color: greyColor,
               size: 26,
             ),
-            label: "My Bills",
+            label: "Loans",
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.person_outline_rounded,
-              size: 32,
-            ),
+            activeIcon: SvgPicture.asset("assets/images/homenav.svg"),
             icon: Icon(
               Icons.person_outline_rounded,
               color: greyColor,
