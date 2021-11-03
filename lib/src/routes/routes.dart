@@ -1,3 +1,4 @@
+import 'package:don/src/navigation/view.dart';
 import 'package:don/src/onboarding/available.dart';
 import 'package:don/src/onboarding/efficient.dart';
 import 'package:don/src/onboarding/reliable.dart';
@@ -27,6 +28,8 @@ class MyRouter {
               return const Phone();
                case Otp.routeName:
               return  Otp();
+              case NavigationView.routeName:
+              return  NavigationView();
             default:
               return const SplashScreen();
           }

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class Otp extends StatelessWidget {
   Otp({Key? key}) : super(key: key);
   static const routeName = '/otp';
-  final controller = Get.put(SignInOtpController());
+  final controller = Get.put(PinController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +24,7 @@ class Otp extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(height: 29.h),
             RichText(
@@ -45,37 +46,58 @@ class Otp extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 22.h),
             
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  _otpTextField(context, true, 0),
-                  _otpTextField(context, false, 1),
-                  _otpTextField(context, false, 2),
-                  _otpTextField(context, false, 3),
-                 // _otpTextField(context, false, 4),
-                  //_otpTextField(context, false, 5),
-                  // controller.otpNumberWidget(0),
-                  // controller.otpNumberWidget(1),
-                  // controller.otpNumberWidget(2),
-                  // controller.otpNumberWidget(3)
-                ],
-              ),
-            ),
-             Container(
-              child: NumericKeyboard(
-                onKeyboardTap: controller.onKeyboardTap,
-                textColor: Theme.of(context).primaryColor,
-                rightIcon: Icon(
-                  Icons.backspace_outlined,
-                  color: Theme.of(context).primaryColor,
+          
+              Padding(
+                padding:  EdgeInsets.only(top: 80.h),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GetBuilder<PinController>(
+                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                        builder: (_) => otpNumberWidget(0),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GetBuilder<PinController>(
+                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                        builder: (_) => otpNumberWidget(1),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GetBuilder<PinController>(
+                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                        builder: (_) => otpNumberWidget(2),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      GetBuilder<PinController>(
+                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                        builder: (_) => otpNumberWidget(3),
+                      ),
+                    ],
+                  ),
                 ),
-                rightButtonFn: () => controller.updateSelect(),
               ),
+             Padding(
+               padding:  EdgeInsets.only(bottom:14.h,top:80.h),
+               child: Container(
+                child: NumericKeyboard(
+                  onKeyboardTap: controller.onKeyboardTap,
+                  textColor: Theme.of(context).primaryColor,
+                  rightIcon: Icon(
+                    Icons.backspace_outlined,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  rightButtonFn: () => controller.updateSelect(),
+                ),
             ),
+             ),
           ],
         ),
       ),
@@ -84,39 +106,37 @@ class Otp extends StatelessWidget {
 
   Widget _otpTextField(BuildContext context, bool autoFocus, int position) {
     return Container(
-      height: 60,
-      width: 60,
+      height: 60.h,
+      width: 60.w,
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
       ),
-      child: TextFormField(
-          keyboardType: TextInputType.phone,
-          validator: (value) => controller.validatorEmpty(value!),
-          onChanged: (value) {
-            if (value.length == 1) {
-              FocusScope.of(context).nextFocus();
-              controller.onKeyboardTap(value);
-            }
-          },
-          maxLines: 1,
-          style: TextStyle(
-            color: primaryColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-          decoration: InputDecoration(
-
-              enabledBorder:InputBorder.none,
-            border: InputBorder.none,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              borderSide: BorderSide(
-                color: otpColor,
-              ),
+      child: Center(
+        child: TextFormField(
+            keyboardType: TextInputType.phone,
+            controller: controller.otpController,
+            validator: (value) => controller.validatorEmpty(value!),
+            onChanged: (value) {
+              if (value.length == 1) {
+                FocusScope.of(context).nextFocus();
+                controller.onKeyboardTap(value);
+              }
+            },
+            maxLines: 1,
+            style: TextStyle(
+              color: primaryColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
-          )
-          ),
+            decoration: InputDecoration(
+
+                enabledBorder:InputBorder.none,
+              border: InputBorder.none,
+              focusedBorder:InputBorder.none,
+            )
+            ),
+      ),
     );
   }
 

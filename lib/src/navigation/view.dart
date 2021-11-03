@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class NavigationView extends StatefulWidget {
   const NavigationView({Key? key}) : super(key: key);
-
+static const routeName = '/navigation';
   @override
   State<StatefulWidget> createState() {
     return _NavigationView();
