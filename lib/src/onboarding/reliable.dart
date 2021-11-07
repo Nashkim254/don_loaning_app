@@ -109,7 +109,7 @@ class Reliable extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 10.h),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/register'),
+                onTap: () => Navigator.pushNamed(context, '/phone'),
                 child: Container(
                   height: 31.h,
                   width: double.infinity,

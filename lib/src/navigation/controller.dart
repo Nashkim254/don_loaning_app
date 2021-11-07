@@ -1,6 +1,7 @@
 
 import 'package:don/src/Home/view.dart';
 import 'package:don/src/Loans/view.dart';
+import 'package:don/src/Profile/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,8 +25,7 @@ class NavigationController extends GetxController {
   var tabClient = [
     HomeView(),
     Loans(),
-   // PayBill(),
-   // ProfileView(),
+   ProfileView(),
   ];
 
   var tabAgent = [

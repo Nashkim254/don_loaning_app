@@ -26,7 +26,7 @@ class Loans extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 20.h, left: 30.w, right: 30.w),
               child: Container(
-                height: 186.h,
+                height: 196.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -126,32 +126,41 @@ class Loans extends StatelessWidget {
                     ),
                     ShakeTransition(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 18.0),
+                        padding: EdgeInsets.only(left: 18.w),
                         child: Card(
                           elevation: 5,
-                          child: Container(
-                            height: 30.h,
-                            width: 120.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: cardLightColor,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "REQUEST LOAN",
-                                    style: theme.textTheme.bodyText1!.copyWith(
-                                        color: primaryColor, fontSize: 11),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/request');
+                            },
+                            child: Container(
+                              height: 30.h,
+                              width: 120.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: cardLightColor,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "REQUEST LOAN",
+                                      style: theme.textTheme.bodyText1!
+                                          .copyWith(
+                                              color: primaryColor,
+                                              fontSize: 11),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset("assets/images/forth.png"),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child:
+                                        Image.asset("assets/images/forth.png"),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -221,34 +230,41 @@ class Loans extends StatelessWidget {
                       trailing: ShakeTransition(
                         child: Card(
                           elevation: 5,
-                          child: Container(
-                            height: 30.h,
-                            width: 120.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: primaryColor,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding:  EdgeInsets.only(left:28.w),
-                                  child: Text(
-                                    "View all",
-                                    style: theme.textTheme.bodyText1!.copyWith(
-                                        color: cardLightColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/hhistory');
+                            },
+                            child: Container(
+                              height: 30.h,
+                              width: 120.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: primaryColor,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 28.w),
+                                    child: Text(
+                                      "View all",
+                                      style: theme.textTheme.bodyText1!
+                                          .copyWith(
+                                              color: cardLightColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                     ListTile(
-                      leading:Icon(Icons.email,color:primaryColor),
+                      leading: Icon(Icons.email, color: primaryColor),
                       title: Text(
                         "Paid back Ksh.50,000.00",
                         style: theme.textTheme.bodyText1!.copyWith(
@@ -265,7 +281,7 @@ class Loans extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      leading:Icon(Icons.email,color:primaryColor),
+                      leading: Icon(Icons.email, color: primaryColor),
                       title: Text(
                         "Paid back Ksh.50,000.00",
                         style: theme.textTheme.bodyText1!.copyWith(
@@ -282,7 +298,7 @@ class Loans extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      leading:Icon(Icons.email,color:primaryColor),
+                      leading: Icon(Icons.email, color: primaryColor),
                       title: Text(
                         "Paid back Ksh.50,000.00",
                         style: theme.textTheme.bodyText1!.copyWith(
@@ -299,7 +315,7 @@ class Loans extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      leading:Icon(Icons.email,color:primaryColor),
+                      leading: Icon(Icons.email, color: primaryColor),
                       title: Text(
                         "Paid back Ksh.50,000.00",
                         style: theme.textTheme.bodyText1!.copyWith(
@@ -316,7 +332,7 @@ class Loans extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      leading:Icon(Icons.email,color:primaryColor),
+                      leading: Icon(Icons.email, color: primaryColor),
                       title: Text(
                         "Paid back Ksh.50,000.00",
                         style: theme.textTheme.bodyText1!.copyWith(

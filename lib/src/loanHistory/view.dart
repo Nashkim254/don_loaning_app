@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class LoansHistory extends StatelessWidget {
   const LoansHistory({Key? key}) : super(key: key);
-
+static const routeName = '/history';
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

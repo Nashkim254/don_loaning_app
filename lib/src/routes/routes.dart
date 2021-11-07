@@ -1,3 +1,5 @@
+import 'package:don/src/LoanApplication/view.dart';
+import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/navigation/view.dart';
 import 'package:don/src/onboarding/available.dart';
 import 'package:don/src/onboarding/efficient.dart';
@@ -29,7 +31,12 @@ class MyRouter {
                case Otp.routeName:
               return  Otp();
               case NavigationView.routeName:
-              return  NavigationView();
+              return const NavigationView();
+               case LoansHistory.routeName:
+              return const LoansHistory();
+               case LoanApplication.routeName:
+              return const LoanApplication();
+              
             default:
               return const SplashScreen();
           }
