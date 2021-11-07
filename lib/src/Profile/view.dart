@@ -1,3 +1,4 @@
+import 'package:don/src/EditProfile/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
@@ -92,23 +93,28 @@ class ProfileView extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 0.h),
-                      child: Container(
-                        height: 30,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(15.r),
-                            bottomRight: Radius.circular(15.r),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(EditProfile());
+                        },
+                        child: Container(
+                          height: 30,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(15.r),
+                              bottomRight: Radius.circular(15.r),
+                            ),
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Edit details",
-                            style: theme.textTheme.bodyText1!.copyWith(
-                                color: cardLightColor,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600),
+                          child: Center(
+                            child: Text(
+                              "Edit details",
+                              style: theme.textTheme.bodyText1!.copyWith(
+                                  color: cardLightColor,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),
@@ -141,15 +147,16 @@ class ProfileView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                            child:Icon(Icons.notifications)
-                          ),
+                              padding: EdgeInsets.only(left: 18.w, top: 13.h),
+                              child: Icon(Icons.notifications)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Notifications",
-                              style: theme.textTheme.bodyText1!
-                                  .copyWith(color: primaryColor, fontSize: 16.sp,fontWeight:FontWeight.w600),
+                              style: theme.textTheme.bodyText1!.copyWith(
+                                  color: primaryColor,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
@@ -187,15 +194,16 @@ class ProfileView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                            child:Icon(Icons.settings)
-                          ),
+                              padding: EdgeInsets.only(left: 18.w, top: 13.h),
+                              child: Icon(Icons.settings)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Settings",
-                              style: theme.textTheme.bodyText1!
-                                  .copyWith(color: primaryColor, fontSize: 16.sp,fontWeight:FontWeight.w600),
+                              style: theme.textTheme.bodyText1!.copyWith(
+                                  color: primaryColor,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
@@ -209,7 +217,7 @@ class ProfileView extends StatelessWidget {
                 ),
               ),
             ),
-             ShakeTransition(
+            ShakeTransition(
               child: Padding(
                 padding: EdgeInsets.only(
                   left: 30.w,
@@ -233,15 +241,16 @@ class ProfileView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                            child:Icon(Icons.note_add)
-                          ),
+                              padding: EdgeInsets.only(left: 18.w, top: 13.h),
+                              child: Icon(Icons.note_add)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Terms of use and Privacy",
-                              style: theme.textTheme.bodyText1!
-                                  .copyWith(color: primaryColor, fontSize: 16.sp,fontWeight:FontWeight.w600),
+                              style: theme.textTheme.bodyText1!.copyWith(
+                                  color: primaryColor,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
@@ -255,7 +264,7 @@ class ProfileView extends StatelessWidget {
                 ),
               ),
             ),
-             ShakeTransition(
+            ShakeTransition(
               child: Padding(
                 padding: EdgeInsets.only(
                   left: 30.w,
@@ -279,15 +288,16 @@ class ProfileView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                            child:Icon(Icons.logout)
-                          ),
+                              padding: EdgeInsets.only(left: 18.w, top: 13.h),
+                              child: Icon(Icons.logout)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Log out",
-                              style: theme.textTheme.bodyText1!
-                                  .copyWith(color: primaryColor, fontSize: 16.sp,fontWeight:FontWeight.w600),
+                              style: theme.textTheme.bodyText1!.copyWith(
+                                  color: primaryColor,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
