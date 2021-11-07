@@ -31,12 +31,14 @@ class _NavigationView extends State<NavigationView> {
             ? backgroundLight
             : backgroundDark,
         type: BottomNavigationBarType.fixed,
+        selectedIconTheme: IconThemeData(color: primaryColor),
+        unselectedIconTheme: IconThemeData(color: greyColor),
         enableFeedback: true,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         selectedItemColor:
-            theme.brightness == Brightness.light ? accentLight : backgroundDark,
+            theme.brightness == Brightness.light ? primaryColor : greyColor,
         unselectedItemColor:
-            theme.brightness == Brightness.light ? primaryLight : primaryDark,
+            theme.brightness == Brightness.light ? greyColor : primaryDark,
         currentIndex: navigationController.isSelected,
         elevation: 6.0,
         items: [
@@ -45,11 +47,11 @@ class _NavigationView extends State<NavigationView> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/images/homenav.svg"),
+            icon: SvgPicture.asset("assets/images/loan.svg"),
             label: "Loans",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/images/homenav.svg"),
+            icon: Image.asset("assets/images/prof.png"),
             label: "Profile",
           ),
         ],

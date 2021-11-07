@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class LoansPayback extends StatelessWidget {
   const LoansPayback({Key? key}) : super(key: key);
+  static const routeName = '/payback';
 
   @override
   Widget build(BuildContext context) {

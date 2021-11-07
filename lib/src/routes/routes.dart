@@ -1,4 +1,5 @@
 import 'package:don/src/LoanApplication/view.dart';
+import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/navigation/view.dart';
 import 'package:don/src/onboarding/available.dart';
@@ -36,6 +37,8 @@ class MyRouter {
               return const LoansHistory();
                case LoanApplication.routeName:
               return const LoanApplication();
+              case LoansPayback.routeName:
+              return const LoansPayback();
               
             default:
               return const SplashScreen();

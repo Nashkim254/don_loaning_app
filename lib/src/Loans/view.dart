@@ -1,7 +1,9 @@
+import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Loans extends StatelessWidget {
   const Loans({Key? key}) : super(key: key);
@@ -181,6 +183,9 @@ class Loans extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       color: cardLightColor),
                   child: ListTile(
+                      onTap: () {
+                        Get.to(LoansPayback());
+                      },
                       leading: Padding(
                         padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
                         child: SizedBox(
@@ -232,7 +237,7 @@ class Loans extends StatelessWidget {
                           elevation: 5,
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/hhistory');
+                              Navigator.pushNamed(context, '/history');
                             },
                             child: Container(
                               height: 30.h,
