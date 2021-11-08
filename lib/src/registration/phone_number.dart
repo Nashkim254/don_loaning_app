@@ -92,7 +92,7 @@ class Phone extends StatelessWidget {
                         TextButton(
                           child: Text("next"),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/navigation');
+                            Navigator.pushNamed(context, '/otp');
                           },
                         )
                       ],

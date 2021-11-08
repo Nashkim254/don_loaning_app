@@ -1,6 +1,7 @@
 import 'package:don/src/Home/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/navigation/view.dart';
+import 'package:don/src/registration/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class PinController extends GetxController {
     text = text + value;
     if (text.length == 4) {
       Get.dialog(CustomDialog(), barrierDismissible: false);
-      Future.delayed(const Duration(seconds: 3), () => Get.to(NavigationView()));
+      Future.delayed(const Duration(seconds: 3), () => Get.to(Register()));
     }
     update();
   }

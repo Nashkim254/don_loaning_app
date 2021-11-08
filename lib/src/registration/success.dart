@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Success extends StatelessWidget {
   const Success({Key? key}) : super(key: key);
-
+  static const routeName = '/success';
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -15,31 +15,40 @@ class Success extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height:146.h),
-              Container(
-                height: 118.h,
-                width: 118.h,
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.done,
-                    size: 80,
-                    color: cardLightColor,
+              Padding(
+                padding:  EdgeInsets.only(left:54.w),
+                child: Container(
+                  height: 118.h,
+                  width: 118.h,
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.done,
+                      size: 80,
+                      color: cardLightColor,
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 53.h),
-              Text(
-                "Account Created!",
-                style: theme.textTheme.bodyText1!
-                    .copyWith(color: primaryColor, fontSize: 30.sp),
+              Padding(
+                padding:  EdgeInsets.only(left:54.w),
+                child: Text(
+                  "Account Created!",
+                  style: theme.textTheme.bodyText1!
+                      .copyWith(color: primaryColor, fontSize: 30.sp),
+                ),
               ),
-              Text(
-                "Your account has been created\n                successfully",
-                style: theme.textTheme.bodyText1!
-                    .copyWith(color: blackColor, fontSize: 14.sp),
+              Padding(
+                padding:  EdgeInsets.only(left:54.w),
+                child: Text(
+                  "Your account has been created\n                successfully",
+                  style: theme.textTheme.bodyText1!
+                      .copyWith(color: blackColor, fontSize: 14.sp),
+                ),
               ),
             ],
           ),

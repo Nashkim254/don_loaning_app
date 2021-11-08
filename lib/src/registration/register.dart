@@ -104,7 +104,7 @@ class Register extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
               child: GestureDetector(
-                onTap: ()=> Navigator.pushNamed(context, '/phone'),
+                onTap: ()=> Navigator.pushNamed(context, '/success'),
                 child: Container(
                   child: Image.asset("assets/images/go.png"),
                 ),

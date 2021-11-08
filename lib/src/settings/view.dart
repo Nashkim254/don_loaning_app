@@ -1,23 +1,23 @@
-import 'package:don/src/EditProfile/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key}) : super(key: key);
-  static const routeName = '/profilepage';
-
+class SettingsView extends StatelessWidget {
+  const SettingsView({Key? key}) : super(key: key);
+static const routeName = '/appsettings';
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: pinBackgroundColor,
+       backgroundColor: pinBackgroundColor,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+       leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: blackColor),
+              onPressed: () => Get.back()),
         title: Text(
-          "Profile",
+          "Settings",
           style: theme.textTheme.bodyText1!.copyWith(
               color: blackColor, fontSize: 16.sp, fontWeight: FontWeight.w400),
         ),
@@ -25,116 +25,18 @@ class ProfileView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 20.h),
-              child: Container(
-                height: 130.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.r),
-                  color: cardLightColor,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IntrinsicHeight(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 23.w, top: 16.h),
-                            child: Container(
-                                height: 58.h,
-                                width: 58.w,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    width: 1.w,
-                                    color: primaryColor,
-                                  ),
-                                ),
-                                child: Center(child: Icon(Icons.person))),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20.w),
-                            child: VerticalDivider(
-                              thickness: 2,
-                              indent: 20.h,
-                            ),
-                          ),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 20.h, left: 20.w),
-                                  child: Text(
-                                    "John Doe",
-                                    style: theme.textTheme.bodyText1!.copyWith(
-                                        color: blackColor,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 20.h, left: 20.w),
-                                  child: Text(
-                                    "johndoe@gmail.com",
-                                    style: theme.textTheme.bodyText1!.copyWith(
-                                        color: blackColor,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ])
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 0.h),
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.to(EditProfile());
-                        },
-                        child: Container(
-                          height: 30,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(15.r),
-                              bottomRight: Radius.circular(15.r),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Edit details",
-                              style: theme.textTheme.bodyText1!.copyWith(
-                                  color: cardLightColor,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             ShakeTransition(
               child: Padding(
                 padding: EdgeInsets.only(
                   left: 30.w,
                   right: 30.w,
-                  top: 57.h,
+                  top: 24.h,
                 ),
                 child: Card(
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/notifications');
+                      // Navigator.pushNamed(context, '/notifications');
                     },
                     child: Container(
                       height: 43.h,
@@ -148,11 +50,11 @@ class ProfileView extends StatelessWidget {
                         children: [
                           Padding(
                               padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                              child: Icon(Icons.notifications)),
+                              child: const Icon(Icons.dark_mode)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Notifications",
+                              "App Theme",
                               style: theme.textTheme.bodyText1!.copyWith(
                                   color: primaryColor,
                                   fontSize: 16.sp,
@@ -175,13 +77,13 @@ class ProfileView extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: 30.w,
                   right: 30.w,
-                  top: 21.h,
+                  top: 24.h,
                 ),
                 child: Card(
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/appsettings');
+                      // Navigator.pushNamed(context, '/notifications');
                     },
                     child: Container(
                       height: 43.h,
@@ -195,11 +97,11 @@ class ProfileView extends StatelessWidget {
                         children: [
                           Padding(
                               padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                              child:const Icon(Icons.settings)),
+                              child: const Icon(Icons.phone)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Settings",
+                              "Change phone number",
                               style: theme.textTheme.bodyText1!.copyWith(
                                   color: primaryColor,
                                   fontSize: 16.sp,
@@ -222,13 +124,13 @@ class ProfileView extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: 30.w,
                   right: 30.w,
-                  top: 21.h,
+                  top: 24.h,
                 ),
                 child: Card(
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/request');
+                      // Navigator.pushNamed(context, '/notifications');
                     },
                     child: Container(
                       height: 43.h,
@@ -242,11 +144,11 @@ class ProfileView extends StatelessWidget {
                         children: [
                           Padding(
                               padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                              child: Icon(Icons.note_add)),
+                              child: const Icon(Icons.message)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Terms of use and Privacy",
+                              "About us",
                               style: theme.textTheme.bodyText1!.copyWith(
                                   color: primaryColor,
                                   fontSize: 16.sp,
@@ -269,13 +171,13 @@ class ProfileView extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: 30.w,
                   right: 30.w,
-                  top: 21.h,
+                  top: 24.h,
                 ),
                 child: Card(
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/login');
+                      // Navigator.pushNamed(context, '/notifications');
                     },
                     child: Container(
                       height: 43.h,
@@ -289,11 +191,11 @@ class ProfileView extends StatelessWidget {
                         children: [
                           Padding(
                               padding: EdgeInsets.only(left: 18.w, top: 13.h),
-                              child: Icon(Icons.logout)),
+                              child: const Icon(Icons.help)),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Log out",
+                              "Help",
                               style: theme.textTheme.bodyText1!.copyWith(
                                   color: primaryColor,
                                   fontSize: 16.sp,

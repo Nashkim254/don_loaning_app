@@ -47,7 +47,7 @@ class EditProfile extends StatelessWidget {
                   decoration: InputDecoration(
                     label: Text('Email address'),
                     border: InputBorder.none,
-                    focusedBorder:InputBorder.none,
+                    focusedBorder: InputBorder.none,
                   ),
                 ),
               ),
@@ -73,7 +73,7 @@ class EditProfile extends StatelessWidget {
                   decoration: InputDecoration(
                       label: Text('Password'),
                       border: InputBorder.none,
-                      focusedBorder:InputBorder.none,
+                      focusedBorder: InputBorder.none,
                       suffix: Icon(Icons.remove_red_eye)),
                 ),
               ),
@@ -99,7 +99,7 @@ class EditProfile extends StatelessWidget {
                   decoration: InputDecoration(
                       label: Text('Confirm password'),
                       border: InputBorder.none,
-                      focusedBorder:InputBorder.none,
+                      focusedBorder: InputBorder.none,
                       suffix: Icon(Icons.remove_red_eye)),
                 ),
               ),
@@ -107,19 +107,22 @@ class EditProfile extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 30.w, right: 30.w),
               child: GestureDetector(
-               // onTap: () => Navigator.pushNamed(context, '/phone'),
+                // onTap: () => Navigator.pushNamed(context, '/phone'),
                 child: Container(
                   height: 40.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
-                    color:primaryColor,
+                    color: primaryColor,
                   ),
                   child: Center(
-                    child: Text("Edit",style: theme.textTheme.bodyText1!.copyWith(
-                                  color: cardLightColor,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w600),),
+                    child: Text(
+                      "Edit",
+                      style: theme.textTheme.bodyText1!.copyWith(
+                          color: cardLightColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),
