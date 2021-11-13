@@ -1,3 +1,4 @@
+import 'package:don/src/Home/view.dart';
 import 'package:don/src/LoanApplication/view.dart';
 import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/loanHistory/view.dart';
@@ -30,7 +31,7 @@ class MyRouter {
             case Reliable.routeName:
               return const Reliable();
             case Register.routeName:
-              return const Register();
+              return  Register();
             case Phone.routeName:
               return const Phone();
             case Otp.routeName:

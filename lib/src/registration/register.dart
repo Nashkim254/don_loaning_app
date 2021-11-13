@@ -1,11 +1,14 @@
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/registration/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+  Register({Key? key}) : super(key: key);
   static const routeName = '/register';
+  final cont = Get.put(RegisterController());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -104,7 +107,7 @@ class Register extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
               child: GestureDetector(
-                onTap: ()=> Navigator.pushNamed(context, '/success'),
+                onTap: () => cont.goToSuccessPagege(),
                 child: Container(
                   child: Image.asset("assets/images/go.png"),
                 ),

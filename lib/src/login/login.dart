@@ -90,7 +90,7 @@ class Login extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/home'),
+                onTap: () => Navigator.pushNamed(context, '/navigation'),
                 child: Container(
                   child: Image.asset("assets/images/go.png"),
                 ),
