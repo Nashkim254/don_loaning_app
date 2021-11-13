@@ -1,12 +1,21 @@
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/constants/constants.dart';
+import 'package:don/src/registration/phone/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-class Phone extends StatelessWidget {
-  const Phone({Key? key}) : super(key: key);
+class Phone extends StatefulWidget {
+   Phone({Key? key}) : super(key: key);
   static const routeName = '/phone';
+
+  @override
+  State<Phone> createState() => _PhoneState();
+}
+
+class _PhoneState extends State<Phone> {
+final cont = Get.put(PhoneController());
 
   @override
   Widget build(BuildContext context) {
@@ -77,24 +86,34 @@ class Phone extends StatelessWidget {
                                   height: 50.h,
                                   child: TextField(
                                     keyboardType: TextInputType.number,
+                                    controller: cont.phoneController,
                                     style: theme.textTheme.bodyText1,
                                     decoration: const InputDecoration(
                                         focusedBorder: InputBorder.none,
                                         border: InputBorder.none,
                                         enabledBorder: InputBorder.none,
-                                        hintText: "+254- x-xx-xxx-xx"),
+                                        hintText: "+254- x-xx-xxx-xx",
+                                        hintStyle: TextStyle(color: Color(0xff878787))
+                                        ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        TextButton(
-                          child: Text("next"),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/otp');
-                          },
-                        )
+                         Padding(
+              padding: EdgeInsets.only(top: 46.h, left: 150.w, right: 150.w),
+              child: GestureDetector(
+                onTap: () {
+                  cont.phoneMethod();
+                },
+                child: Container(
+                  height: 38.h,
+                  width: 38.w,
+                  child: Image.asset("assets/images/go.png"),
+                ),
+              ),
+            ),
                       ],
                     ),
                   ),

@@ -1,22 +1,29 @@
 import 'package:don/src/Home/view.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/constants/constants.dart';
+import 'package:don/src/helpers/toasts.dart';
+import 'package:don/src/models/otp_model.dart';
 import 'package:don/src/navigation/view.dart';
-import 'package:don/src/registration/register.dart';
+import 'package:don/src/registration/register/view.dart';
+import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class PinController extends GetxController {
+class OtpController extends GetxController {
   String text = '';
   bool _isLoading = false;
   bool _keyboardVisible = false;
   final TextEditingController otpController = TextEditingController();
-
+  var data = Get.arguments;
+Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+   String? number;
+   var result = ''.obs;
   void onKeyboardTap(String value) {
     text = text + value;
-    if (text.length == 4) {
-      Get.dialog(CustomDialog(), barrierDismissible: false);
-      Future.delayed(const Duration(seconds: 3), () => Get.to(Register()));
+    if (text.length == 6) {
+      otpMethod();
     }
     update();
   }
@@ -31,7 +38,43 @@ class PinController extends GetxController {
       return "value connot be empty";
     }
   }
+
+  // getBills
+  var isLoadingBills = true.obs;
+
+  otpMethod() async {
+    print("verifying...");
+    Get.dialog(CustomDialog(), barrierDismissible: false);
+    isLoadingBills.toggle();
+    final SharedPreferences prefs = await _prefs;
+    number = prefs.getString("number");
+    result.value = number!;
+    print("code1");
+    print(isLoadingBills);
+    print(text);
+    OtpModel otpModel = OtpModel(
+      code: text,
+      phone: number,
+    );
+    OtpResponseModel response = await verifyOtp(otpModel);
+    print("code 2");
+
+    print(response.code);
+    if (response.code == 200 && response.data['verified'] == true) {
+      print(response.data['username']);
+      Get.to(() => Register(), arguments: [otpModel.phone]);
+      showToastSuccess("user verified successfully");
+      // Get.to(FetchedInvoiceView(), arguments: [bill]);
+    } else {
+      print(response.code);
+      print(response.data['error']);
+
+      showToastError('Error occured');
+    }
+    update();
+  }
 }
+
 class CustomDialog extends StatelessWidget {
   CustomDialog({Key? key}) : super(key: key);
   @override
@@ -55,7 +98,7 @@ class CustomDialog extends StatelessWidget {
           Container(
             height: 80,
             width: 80,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xffF0642F),
               shape: BoxShape.circle,
             ),

@@ -8,10 +8,10 @@ import 'package:don/src/notifications/view.dart';
 import 'package:don/src/onboarding/available.dart';
 import 'package:don/src/onboarding/efficient.dart';
 import 'package:don/src/onboarding/reliable.dart';
-import 'package:don/src/registration/otp.dart';
-import 'package:don/src/registration/phone_number.dart';
-import 'package:don/src/registration/register.dart';
-import 'package:don/src/registration/success.dart';
+import 'package:don/src/registration/otp/view.dart';
+import 'package:don/src/registration/phone/view.dart';
+import 'package:don/src/registration/register/view.dart';
+import 'package:don/src/registration/success/view.dart';
 import 'package:don/src/settings/view.dart';
 import 'package:don/src/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class MyRouter {
             case Register.routeName:
               return  Register();
             case Phone.routeName:
-              return const Phone();
+              return  Phone();
             case Otp.routeName:
               return Otp();
             case NavigationView.routeName:

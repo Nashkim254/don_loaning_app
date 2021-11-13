@@ -1,5 +1,5 @@
 import 'package:don/src/login/login.dart';
-import 'package:don/src/registration/success.dart';
+import 'package:don/src/registration/success/view.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {

@@ -66,8 +66,8 @@ class MyApp extends StatelessWidget {
 
             // Define a function to handle named routes in order to support
             // Flutter web url navigation and deep linking.
-            onGenerateRoute: MyRouter.generateRoute,
-            initialRoute: SplashScreen.routeName,
+            //onGenerateRoute: MyRouter.generateRoute,
+            home: const SplashScreen(),
           );
         });
   }

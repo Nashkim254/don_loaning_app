@@ -1,7 +1,11 @@
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/login/login.dart';
+import 'package:don/src/registration/phone/view.dart';
+import 'package:don/src/registration/register/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class Reliable extends StatelessWidget {
   const Reliable({Key? key}) : super(key: key);
@@ -89,7 +93,9 @@ class Reliable extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 33.h),
               child: GestureDetector(
-                onTap:(){},
+                onTap:(){
+                 Get.to(const Login());
+                },
                 child: Container(
                     height: 31.h,
                     width: double.infinity,
@@ -109,7 +115,7 @@ class Reliable extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 10.h),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/phone'),
+                onTap: () => Get.to(Phone()),
                 child: Container(
                   height: 31.h,
                   width: double.infinity,

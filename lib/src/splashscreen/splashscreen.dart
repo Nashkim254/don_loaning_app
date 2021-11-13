@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/onboarding/available.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 5),
-        () => Navigator.pushNamed(context, '/available'));
+        () =>Get.to(const Available()));
   }
 
   @override

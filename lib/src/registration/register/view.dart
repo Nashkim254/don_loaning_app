@@ -1,5 +1,5 @@
 import 'package:don/src/constants/colors.dart';
-import 'package:don/src/registration/register_controller.dart';
+import 'package:don/src/registration/register/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -47,9 +47,11 @@ class Register extends StatelessWidget {
                   ],
                 ),
                 child: const TextField(
+                
                   decoration: InputDecoration(
                     label: Text('Email address'),
                     border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
                   ),
                 ),
               ),
@@ -72,9 +74,11 @@ class Register extends StatelessWidget {
                   ],
                 ),
                 child: const TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                       label: Text('Password'),
                       border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
                       suffix: Icon(Icons.remove_red_eye)),
                 ),
               ),
@@ -96,11 +100,13 @@ class Register extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const TextField(
+                child:  TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
-                      label: Text('Confirm password'),
+                      label: const Text('Confirm password'),
                       border: InputBorder.none,
-                      suffix: Icon(Icons.remove_red_eye)),
+                      focusedBorder: InputBorder.none,
+                      suffix: Icon(Icons.remove_red_eye,color: textColor,)),
                 ),
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/helpers/numeric_keyboard.dart';
-import 'package:don/src/registration/otp_controller.dart';
+import 'package:don/src/registration/otp/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 class Otp extends StatelessWidget {
   Otp({Key? key}) : super(key: key);
   static const routeName = '/otp';
-  final controller = Get.put(PinController());
+  final controller = Get.put(OtpController());
+  var data = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,58 +28,46 @@ class Otp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(height: 29.h),
-            RichText(
-              text: TextSpan(
-                text: 'The OTP has been sent to +2547345678 via SMS \n',
-                style: TextStyle(color: blackColor, fontSize: 10.sp),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: ' TNo SMS received?',
+             Obx( () {
+                 return Text(
+                     'The OTP has been sent to ${controller.result.value} via SMS \n',
                     style: TextStyle(color: blackColor, fontSize: 10.sp),
-                  ),
-                  TextSpan(
-                    text: ' Try OTP via voice call',
-                    style: TextStyle(
-                        color: blueColor,
-                        fontSize: 10.sp,
-                        decoration: TextDecoration.underline),
-                  ),
-                ],
-              ),
-            ),
-            
+                    
+                  
+            );
+               }
+             ),
+            //Text(controller.data[0]),
           
               Padding(
                 padding:  EdgeInsets.only(top: 80.h),
                 child: Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      GetBuilder<PinController>(
-                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                      GetBuilder<OtpController>(
+                        init: OtpController(), // INIT IT ONLY THE FIRST TIME
                         builder: (_) => otpNumberWidget(0),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GetBuilder<PinController>(
-                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                      GetBuilder<OtpController>(
+                        init: OtpController(), // INIT IT ONLY THE FIRST TIME
                         builder: (_) => otpNumberWidget(1),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GetBuilder<PinController>(
-                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                      GetBuilder<OtpController>(
+                        init: OtpController(), // INIT IT ONLY THE FIRST TIME
                         builder: (_) => otpNumberWidget(2),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GetBuilder<PinController>(
-                        init: PinController(), // INIT IT ONLY THE FIRST TIME
+                      GetBuilder<OtpController>(
+                        init: OtpController(), // INIT IT ONLY THE FIRST TIME
                         builder: (_) => otpNumberWidget(3),
+                      ),
+                      GetBuilder<OtpController>(
+                        init: OtpController(), // INIT IT ONLY THE FIRST TIME
+                        builder: (_) => otpNumberWidget(4),
+                      ),
+                      GetBuilder<OtpController>(
+                        init: OtpController(), // INIT IT ONLY THE FIRST TIME
+                        builder: (_) => otpNumberWidget(5),
                       ),
                     ],
                   ),
@@ -106,9 +95,9 @@ class Otp extends StatelessWidget {
 
   Widget _otpTextField(BuildContext context, bool autoFocus, int position) {
     return Container(
-      height: 60.h,
-      width: 60.w,
-      decoration: BoxDecoration(
+      height: 40.h,
+      width: 40.w,
+      decoration: const BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
       ),
@@ -129,7 +118,7 @@ class Otp extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
-            decoration: InputDecoration(
+            decoration:const InputDecoration(
 
                 enabledBorder:InputBorder.none,
               border: InputBorder.none,
@@ -152,7 +141,7 @@ class Otp extends StatelessWidget {
         child: Center(
             child: Text(
           controller.text[position],
-          style: TextStyle(color: Colors.black),
+          style:const TextStyle(color: Colors.black),
         )),
       );
     } catch (e) {
