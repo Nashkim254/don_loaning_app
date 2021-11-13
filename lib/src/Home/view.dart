@@ -1,5 +1,8 @@
 import 'package:don/src/Home/controller.dart';
+import 'package:don/src/LoanApplication/view.dart';
+import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -69,32 +72,37 @@ final controller = Get.put(HomeController());
                           padding: EdgeInsets.only(left: 18.0),
                           child: Card(
                             elevation: 5,
-                            child: Container(
-                              height: 30.h,
-                              width: 120.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: cardLightColor,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "REQUEST LOAN",
-                                      style: theme.textTheme.bodyText1!
-                                          .copyWith(
-                                              color: primaryColor,
-                                              fontSize: 11),
+                            child: GestureDetector(
+                              onTap: (){
+                                Get.to(LoanApplication());
+                              },
+                              child: Container(
+                                height: 30.h,
+                                width: 120.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: cardLightColor,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "REQUEST LOAN",
+                                        style: theme.textTheme.bodyText1!
+                                            .copyWith(
+                                                color: primaryColor,
+                                                fontSize: 11),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset("assets/images/forth.png"),
-                                  )
-                                ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.asset("assets/images/forth.png"),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -121,85 +129,95 @@ final controller = Get.put(HomeController());
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ShakeTransition(
-                      child: Container(
-                        height: 89.h,
-                        width: 140.w,
-                        decoration: BoxDecoration(
-                            color: cardLightColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 12.h),
-                              child: Image.asset("assets/images/list.png"),
-                            ),
-                            Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 15.w, top: 11.h),
-                                    child: Text(
-                                      "View Loans\nHistory",
-                                      style:
-                                          theme.textTheme.bodyText2!.copyWith(
-                                        color: primaryColor,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Image.asset("assets/images/forth.png"),
-                                  )
-                                ])
-                          ],
-                        ),
-                      ),
-                    ),
-                    ShakeTransition(
-                      child: Container(
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.to(LoansHistory());
+                        },
+                        child: Container(
                           height: 89.h,
                           width: 140.w,
                           decoration: BoxDecoration(
                               color: cardLightColor,
                               borderRadius: BorderRadius.circular(10)),
-                          child: Column(children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 12.h),
-                              child: SizedBox(
-                                  height: 31.h,
-                                  width: 31.w,
-                                  child: Image.asset(
-                                      "assets/images/efficient.png")),
-                            ),
-                            Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 15.w, top: 11.h),
-                                    child: Text(
-                                      "Repay Due\nLoans",
-                                      style:
-                                          theme.textTheme.bodyText2!.copyWith(
-                                        color: primaryColor,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(top: 12.h),
+                                child: Image.asset("assets/images/list.png"),
+                              ),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 15.w, top: 11.h),
+                                      child: Text(
+                                        "View Loans\nHistory",
+                                        style:
+                                            theme.textTheme.bodyText2!.copyWith(
+                                          color: primaryColor,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Image.asset("assets/images/forth.png"),
-                                  )
-                                ])
-                          ])),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Image.asset("assets/images/forth.png"),
+                                    )
+                                  ])
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    ShakeTransition(
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.to(LoansPayback());
+                        },
+                        child: Container(
+                            height: 89.h,
+                            width: 140.w,
+                            decoration: BoxDecoration(
+                                color: cardLightColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(children: [
+                              Padding(
+                                padding: EdgeInsets.only(top: 12.h),
+                                child: SizedBox(
+                                    height: 31.h,
+                                    width: 31.w,
+                                    child: Image.asset(
+                                        "assets/images/efficient.png")),
+                              ),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 15.w, top: 11.h),
+                                      child: Text(
+                                        "Repay Due\nLoans",
+                                        style:
+                                            theme.textTheme.bodyText2!.copyWith(
+                                          color: primaryColor,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Image.asset("assets/images/forth.png"),
+                                    )
+                                  ])
+                            ])),
+                      ),
                     )
                   ],
                 ),

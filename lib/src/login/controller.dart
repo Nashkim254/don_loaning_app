@@ -43,7 +43,7 @@ class LoginController extends GetxController {
 
     print(response.code);
     if (response.code == 200 ) {
-      Get.to(const NavigationView(),arguments: [number]);
+      Get.offAll(const NavigationView(),arguments: [number]);
       showToastSuccess("user Logged in successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else {

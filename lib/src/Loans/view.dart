@@ -1,5 +1,7 @@
+import 'package:don/src/LoanApplication/view.dart';
 import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -133,7 +135,7 @@ class Loans extends StatelessWidget {
                           elevation: 5,
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/request');
+                              Get.to(LoanApplication());
                             },
                             child: Container(
                               height: 30.h,
@@ -237,7 +239,7 @@ class Loans extends StatelessWidget {
                           elevation: 5,
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/history');
+                             Get.to(LoansHistory());
                             },
                             child: Container(
                               height: 30.h,

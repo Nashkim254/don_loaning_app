@@ -1,5 +1,8 @@
 import 'package:don/src/EditProfile/view.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/login/view.dart';
+import 'package:don/src/notifications/view.dart';
+import 'package:don/src/settings/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -134,7 +137,7 @@ class ProfileView extends StatelessWidget {
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/notifications');
+                      Get.to(Notifications());
                     },
                     child: Container(
                       height: 43.h,
@@ -181,7 +184,7 @@ class ProfileView extends StatelessWidget {
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/appsettings');
+                      Get.to(SettingsView());
                     },
                     child: Container(
                       height: 43.h,
@@ -275,7 +278,7 @@ class ProfileView extends StatelessWidget {
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/login');
+                    Get.offAll(Login());
                     },
                     child: Container(
                       height: 43.h,

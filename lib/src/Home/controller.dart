@@ -13,4 +13,10 @@ class HomeController extends GetxController {
     update();
     return result.value;
   }
+
+  @override
+  void onInit() {
+    getUser();
+    super.onInit();
+  }
 }
