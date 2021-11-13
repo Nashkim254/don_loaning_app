@@ -13,7 +13,7 @@ class Apis {
   // static String baseUrl = "http://41.209.55.126:4000";
 
   //live server
-  static String baseUrl = "https://pesaflow.eservices.gov.ss/api";
+  static String baseUrl = "https://api.luchian.co.ke/auth";
 
   static int connectTimeout = 5000;
   static int receiveTimeout = 3000;
