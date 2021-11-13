@@ -26,11 +26,12 @@ number = prefs.setString("number", formatPhoneNumber(phoneController.text)).then
 });
     print("code1");
     print(isLoadingBills);
+   print(formatPhoneNumber(phoneController.text));
     PhoneModel phoneModel = PhoneModel(
       phone: formatPhoneNumber(phoneController.text),
     );
     PhoneResponseModel response = await phone(phoneModel);
-    print("code 2");
+    
 
     print(phoneModel.phone);
     if (response.code == 200 && response.data['detail'] == 'ok') {

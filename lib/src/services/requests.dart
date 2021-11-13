@@ -12,6 +12,7 @@ FormData convertFormData(body) {
 //send otp to phone
 Future<PhoneResponseModel> phone(PhoneModel modelData) async {
   Map? data;
+  int? code;
   try {
     Response response = await Apis.dio.post(
       '/request-phone-verify/',
@@ -20,10 +21,12 @@ Future<PhoneResponseModel> phone(PhoneModel modelData) async {
 
     print('User created: ${response.data}');
     data = response.data;
+    code = 200;
   } on DioError catch (e) {
     ///TODO MK ADD ERRORS
     // MyException exection = MyException();
     data = e.response!.data;
+    code = e.response!.statusCode;
     if (e.type == DioErrorType.response) {
       print('catched');
       print(e.response!.statusCode);
@@ -45,7 +48,7 @@ Future<PhoneResponseModel> phone(PhoneModel modelData) async {
       print('Something went wrong');
     }
   }
-  return PhoneResponseModel(data: data);
+  return PhoneResponseModel(data: data,code:code!);
 }
 
 //verify otp
