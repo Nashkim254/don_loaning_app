@@ -1,12 +1,14 @@
+import 'package:don/src/Home/controller.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
-
+   HomeView({Key? key}) : super(key: key);
+final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -14,9 +16,12 @@ class HomeView extends StatelessWidget {
         backgroundColor: pinBackgroundColor,
         appBar: AppBar(
           leading: Image.asset("assets/images/logo.png"),
-          title: Text(
-            "Hi, John Doe",
-            style: theme.textTheme.bodyText1!.copyWith(),
+          title: Obx(() {
+              return Text(
+                "Hi, ${controller.result.value}",
+                style: theme.textTheme.bodyText1!.copyWith(),
+              );
+            }
           ),
           actions: [
             Image.asset("assets/images/notify.png"),

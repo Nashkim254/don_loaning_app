@@ -1,5 +1,5 @@
 import 'package:don/src/constants/colors.dart';
-import 'package:don/src/login/login.dart';
+import 'package:don/src/login/view.dart';
 import 'package:don/src/registration/phone/view.dart';
 import 'package:don/src/registration/register/view.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +92,7 @@ class Available extends StatelessWidget {
               padding: EdgeInsets.only(left: 50.w, right: 50.w, top: 33.h),
               child: GestureDetector(
                 onTap: () {
-                  Get.to(const Login());
+                  Get.to( Login());
                 },
                 child: Container(
                     height: 31.h,

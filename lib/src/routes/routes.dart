@@ -2,7 +2,7 @@ import 'package:don/src/Home/view.dart';
 import 'package:don/src/LoanApplication/view.dart';
 import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/loanHistory/view.dart';
-import 'package:don/src/login/login.dart';
+import 'package:don/src/login/view.dart';
 import 'package:don/src/navigation/view.dart';
 import 'package:don/src/notifications/view.dart';
 import 'package:don/src/onboarding/available.dart';
@@ -49,7 +49,7 @@ class MyRouter {
             case SettingsView.routeName:
               return const SettingsView();
               case Login.routeName:
-              return const Login();
+              return  Login();
               case Success.routeName:
               return const Success();
 

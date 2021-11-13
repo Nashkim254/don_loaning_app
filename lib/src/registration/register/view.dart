@@ -46,9 +46,10 @@ class Register extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const TextField(
-                
-                  decoration: InputDecoration(
+                child:  TextField(
+                controller: cont.email,
+                style: theme.textTheme.bodyText1,
+                  decoration:const InputDecoration(
                     label: Text('Email address'),
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
@@ -73,9 +74,11 @@ class Register extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const TextField(
+                child:  TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  controller: cont.pass1,
+                  style: theme.textTheme.bodyText1,
+                  decoration: const InputDecoration(
                       label: Text('Password'),
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -102,6 +105,8 @@ class Register extends StatelessWidget {
                 ),
                 child:  TextField(
                   obscureText: true,
+                  controller: cont.pass2,
+                  style: theme.textTheme.bodyText1,
                   decoration: InputDecoration(
                       label: const Text('Confirm password'),
                       border: InputBorder.none,
@@ -113,7 +118,7 @@ class Register extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
               child: GestureDetector(
-                onTap: () => cont.goToSuccessPagege(),
+                onTap: () => cont.registerMethod(),
                 child: Container(
                   child: Image.asset("assets/images/go.png"),
                 ),

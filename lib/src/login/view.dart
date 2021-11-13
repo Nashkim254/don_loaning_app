@@ -1,11 +1,15 @@
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/login/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+   Login({Key? key}) : super(key: key);
   static const routeName = '/login';
+
+  final controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -43,10 +47,13 @@ class Login extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child:  TextField(
+                  controller: controller.email,
+                  style: theme.textTheme.bodyText1,
+                  decoration:const InputDecoration(
                     label: Text('Email address'),
                     border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
                   ),
                 ),
               ),
@@ -68,10 +75,14 @@ class Login extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child:  TextField(
+                  controller: controller.pass,
+                  style: theme.textTheme.bodyText1,
+                  obscureText: true,
+                  decoration: const InputDecoration(
                       label: Text('Password'),
                       border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
                       suffix: Icon(Icons.remove_red_eye)),
                 ),
               ),
@@ -90,7 +101,9 @@ class Login extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/navigation'),
+                onTap: () {
+                 controller.loginMethod();
+                },
                 child: Container(
                   child: Image.asset("assets/images/go.png"),
                 ),
