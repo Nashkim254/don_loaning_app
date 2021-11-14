@@ -48,10 +48,10 @@ class Login extends StatelessWidget {
                   ],
                 ),
                 child:  TextField(
-                  controller: controller.email,
+                  controller: controller.username,
                   style: theme.textTheme.bodyText1,
                   decoration:const InputDecoration(
-                    label: Text('Email address'),
+                    label: Text('Phone Number'),
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                   ),

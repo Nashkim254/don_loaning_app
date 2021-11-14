@@ -15,25 +15,25 @@ class LoginResponseModel<T>{
 
 class LoginModel {
   String? username;
-  String? email;
+  //String? email;
   String? password;
 
   LoginModel({
     required this.username,
-    required this.email,
+   // required this.email,
     required this.password,
   });
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     username = json['username'];
-    email = json['email'];
+   // email = json['email'];
     password = json['password'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['username'] = username;
-    data['email'] = email;
+    //data['email'] = email;
     data['password'] = password;
     return data;
   }

@@ -1,3 +1,4 @@
+import 'package:don/src/constants/constants.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/login/view.dart';
 import 'package:don/src/models/login_model.dart';
@@ -11,7 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final TextEditingController username = TextEditingController();
-  final TextEditingController email = TextEditingController();
   final TextEditingController pass = TextEditingController();
   var data = Get.arguments;
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -30,12 +30,11 @@ class LoginController extends GetxController {
     result.value = number!;
     print("code1");
     print(isLoadingBills);
-    print(email.text);
+    print(username.text);
     print(number);
     print(pass.text);
     LoginModel loginModel = LoginModel(
-      email: email.text,
-      username: number,
+      username: formatPhoneNumber(username.text),
        password: pass.text,
     );
     LoginResponseModel response = await login(loginModel);
