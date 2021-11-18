@@ -23,7 +23,7 @@ class LoginController extends GetxController {
 
   loginMethod() async {
     print("Logining...");
-    print("=========" + formatPhoneNumber(username.text));
+    print("=========" + formatLoginNumber(username.text));
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoadingBills.toggle();
     final SharedPreferences prefs = await _prefs;
@@ -35,24 +35,23 @@ class LoginController extends GetxController {
     print(number);
     print(pass.text);
     LoginModel loginModel = LoginModel(
-      username: username.text,
-       password: pass.text,
+      username: formatPhoneNumber(username.text),
+      password: pass.text,
     );
     LoginResponseModel response = await login(loginModel);
     print("code 2");
 
     print(response.data);
-   if(response.code ==400){
+    if (response.code == 200) {
+      Get.offAll(const NavigationView(), arguments: [number]);
+      showToastSuccess("user Logged in successfully");
+      // Get.to(FetchedInvoiceView(), arguments: [bill]);
+    } else if (response.code == 400) {
       print(response.code);
       print(response.data['error']);
 
       showToastError('${response.data['non_field_errors']}');
     }
-    else if (response.code == 200 ) {
-      Get.offAll(const NavigationView(),arguments: [number]);
-      showToastSuccess("user Logged in successfully");
-      // Get.to(FetchedInvoiceView(), arguments: [bill]);
-    } 
     update();
   }
 }

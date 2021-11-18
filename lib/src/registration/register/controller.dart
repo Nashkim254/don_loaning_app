@@ -1,3 +1,4 @@
+import 'package:don/src/constants/constants.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/login/view.dart';
 import 'package:don/src/models/register.dart';
@@ -48,7 +49,7 @@ class RegisterController extends GetxController {
       email: email.text,
       password1: pass1.text,
       password2: pass2.text,
-      username: number,
+      username:formatPhoneNumber(number!),
     );
     RegisterResponseModel response = await register(registerModel);
     print("code 2");

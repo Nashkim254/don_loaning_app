@@ -5,9 +5,6 @@ import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/login/view.dart';
 import 'package:don/src/navigation/view.dart';
 import 'package:don/src/notifications/view.dart';
-import 'package:don/src/onboarding/available.dart';
-import 'package:don/src/onboarding/efficient.dart';
-import 'package:don/src/onboarding/reliable.dart';
 import 'package:don/src/registration/otp/view.dart';
 import 'package:don/src/registration/phone/view.dart';
 import 'package:don/src/registration/register/view.dart';
@@ -24,12 +21,7 @@ class MyRouter {
           switch (settings.name) {
             case SplashScreen.routeName:
               return const SplashScreen();
-            case Available.routeName:
-              return const Available();
-            case Efficient.routeName:
-              return const Efficient();
-            case Reliable.routeName:
-              return const Reliable();
+           
             case Register.routeName:
               return  Register();
             case Phone.routeName:

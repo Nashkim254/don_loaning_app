@@ -54,7 +54,7 @@ Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     print(text);
     OtpModel otpModel = OtpModel(
       code: text,
-      phone: number,
+      phone: formatPhoneNumber(number!),
     );
     OtpResponseModel response = await verifyOtp(otpModel);
     print("code 2");

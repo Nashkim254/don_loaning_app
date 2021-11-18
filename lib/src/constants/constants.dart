@@ -53,7 +53,22 @@ String formatPhoneNumber(String number) {
 
   return phoneNumber;
 }
+String formatLoginNumber(String number) {
+  String phoneNumber = number.replaceAll(" ", "");
 
+  
+
+  if (phoneNumber.startsWith("0"))
+    phoneNumber = phoneNumber.replaceFirst("0", "254");
+
+    if (phoneNumber.startsWith("+254"))
+    phoneNumber = phoneNumber.replaceFirst("+254", "254");
+
+  if (phoneNumber.startsWith("7") || phoneNumber.startsWith("1"))
+    phoneNumber = "254$phoneNumber";
+
+  return phoneNumber;
+}
 String? validatorEmpty(String value) {
   if (value.isEmpty) {
     return 'Required field';

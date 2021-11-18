@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:don/src/constants/colors.dart';
-import 'package:don/src/onboarding/available.dart';
 import 'package:don/src/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

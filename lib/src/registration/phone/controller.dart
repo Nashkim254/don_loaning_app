@@ -21,7 +21,7 @@ Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoadingBills.toggle();
 final SharedPreferences prefs = await _prefs;
-number = prefs.setString("number", formatPhoneNumber(phoneController.text)).then((bool success) {
+number = prefs.setString("number", formatLoginNumber(phoneController.text)).then((bool success) {
   return number;
 });
     print("code1");
