@@ -2,6 +2,7 @@ import 'package:don/src/EditProfile/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/login/view.dart';
 import 'package:don/src/notifications/view.dart';
+import 'package:don/src/onboarding/onboarding.dart';
 import 'package:don/src/settings/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
@@ -278,7 +279,7 @@ class ProfileView extends StatelessWidget {
                   elevation: 5,
                   child: GestureDetector(
                     onTap: () {
-                    Get.offAll(Login());
+                    Get.offAll(Onbording());
                     },
                     child: Container(
                       height: 43.h,
