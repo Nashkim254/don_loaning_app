@@ -33,7 +33,7 @@ class RegisterController extends GetxController {
 
   registerMethod() async {
     print("registering...");
-    Get.dialog(CustomDialog(), barrierDismissible: false);
+    Get.dialog(CustomDialog(), barrierDismissible: true);
     isLoadingBills.toggle();
     final SharedPreferences prefs = await _prefs;
     number = prefs.getString("number");
@@ -58,7 +58,7 @@ class RegisterController extends GetxController {
       goToSuccessPagege();
       showToastSuccess("user registered successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
-    } else {
+    } else if(response.code == 400){
       print(response.code);
       print(response.data['error']);
 

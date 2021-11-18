@@ -93,6 +93,7 @@ Future<OtpResponseModel> verifyOtp(OtpModel modelData) async {
 //register user
 Future<RegisterResponseModel> register(RegisterModel modelData) async {
   Map? data;
+  int? code;
   try {
     Response response = await Apis.dio.post(
       '/register/',
@@ -101,16 +102,18 @@ Future<RegisterResponseModel> register(RegisterModel modelData) async {
 
     print('registered: ${response.data}');
     data = response.data;
+    code =200;
   } on DioError catch (e) {
     ///TODO MK ADD ERRORS
     // MyException exection = MyException();
     data = e.response!.data;
+    code = e.response!.statusCode;
     if (e.type == DioErrorType.response) {
       print('catched');
       print(e.response!.statusCode);
       print(e.response!.data);
       data = e.response!.data;
-      showToastError('Invalid data Provided');
+      showToastError('A user with similar credentials exists');
     }
     if (e.type == DioErrorType.connectTimeout) {
       print('check your connection');
@@ -126,13 +129,14 @@ Future<RegisterResponseModel> register(RegisterModel modelData) async {
       print('Something went wrong');
     }
   }
-  return RegisterResponseModel(data: data);
+  return RegisterResponseModel(data: data,code: code!);
 }
 
 
 //Login user
 Future<LoginResponseModel> login(LoginModel modelData) async {
   Map? data;
+  int? code;
   try {
     Response response = await Apis.dio.post(
       '/login/',
@@ -141,16 +145,18 @@ Future<LoginResponseModel> login(LoginModel modelData) async {
 
     print('logged in: ${response.data}');
     data = response.data;
+    code =200;
   } on DioError catch (e) {
     ///TODO MK ADD ERRORS
     // MyException exection = MyException();
     data = e.response!.data;
+    code = e.response!.statusCode;
     if (e.type == DioErrorType.response) {
       print('catched');
       print(e.response!.statusCode);
       print(e.response!.data);
       data = e.response!.data;
-      showToastError('Invalid data Provided');
+      //showToastError('${e.response!.data['non_field_errors']}');
     }
     if (e.type == DioErrorType.connectTimeout) {
       print('check your connection');
@@ -166,7 +172,7 @@ Future<LoginResponseModel> login(LoginModel modelData) async {
       print('Something went wrong');
     }
   }
-  return LoginResponseModel(data: data);
+  return LoginResponseModel(data: data,code: code!);
 }
 
 //Reset password
