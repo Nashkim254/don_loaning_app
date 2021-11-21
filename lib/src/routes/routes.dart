@@ -31,7 +31,7 @@ class MyRouter {
             case NavigationView.routeName:
               return const NavigationView();
             case LoansHistory.routeName:
-              return const LoansHistory();
+              return  LoansHistory();
             case LoanApplication.routeName:
               return const LoanApplication();
             case LoansPayback.routeName:

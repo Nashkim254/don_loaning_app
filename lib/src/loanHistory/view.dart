@@ -1,11 +1,16 @@
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/helpers/dateformarter.dart';
+import 'package:don/src/loanHistory/controller.dart';
+import 'package:don/src/registration/otp/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class LoansHistory extends StatelessWidget {
-  const LoansHistory({Key? key}) : super(key: key);
-static const routeName = '/history';
+  LoansHistory({Key? key}) : super(key: key);
+  static const routeName = '/history';
+  final controller = Get.put(HistoryController());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -22,96 +27,48 @@ static const routeName = '/history';
                 fontWeight: FontWeight.w400),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.email, color: primaryColor),
-                title: Text(
-                  "Paid back Ksh.50,000.00",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-                trailing: Text(
-                  "01/12/2020",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400),
-                ),
+        body: Obx(() {
+          if (controller.isLoadingHistory.value) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (controller.historyList.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "No history",
+                    style: TextStyle(fontSize: 14.sp, color: blackColor),
+                  ),
+                  SizedBox(height: 20.h,),
+                  SvgPicture.asset("assets/images/his.svg")
+                ],
               ),
-              ListTile(
-                leading: Icon(Icons.email, color: primaryColor),
-                title: Text(
-                  "Paid back Ksh.50,000.00",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-                trailing: Text(
-                  "01/12/2020",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.email, color: primaryColor),
-                title: Text(
-                  "Paid back Ksh.50,000.00",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-                trailing: Text(
-                  "01/12/2020",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.email, color: primaryColor),
-                title: Text(
-                  "Paid back Ksh.50,000.00",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-                trailing: Text(
-                  "01/12/2020",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.email, color: primaryColor),
-                title: Text(
-                  "Paid back Ksh.50,000.00",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-                trailing: Text(
-                  "01/12/2020",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                      color: blackColor,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-              )
-            ],
-          ),
-        ));
+            );
+          }
+          return ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.historyList.length,
+              itemBuilder: (context, int index) {
+                return ListTile(
+                  leading: Icon(Icons.email, color: primaryColor),
+                  title: Text(
+                    "Received Ksh. ${controller.historyList[index].amount}",
+                    style: theme.textTheme.bodyText1!.copyWith(
+                        color: blackColor,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  trailing: Text(
+                    "${f.format(controller.historyList[index].requestDate!)}",
+                    style: theme.textTheme.bodyText1!.copyWith(
+                        color: blackColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400),
+                  ),
+                );
+              });
+        }));
   }
 }

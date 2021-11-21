@@ -1,11 +1,15 @@
 // //Otp
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:don/src/Apis/api.dart';
 import 'package:don/src/helpers/toasts.dart';
+import 'package:don/src/models/history_model.dart';
 import 'package:don/src/models/login_model.dart';
 import 'package:don/src/models/otp_model.dart';
 import 'package:don/src/models/phone_model.dart';
 import 'package:don/src/models/register.dart';
+import 'package:don/src/models/request_loan_model.dart';
 import 'package:don/src/models/reset_pass_model.dart';
 FormData convertFormData(body) {
   return FormData.fromMap(body);
@@ -251,3 +255,73 @@ Future<RestResponseModel> resetPass(ResetModel modelData) async {
   }
   return RestResponseModel(data: data);
 }
+
+Future<List<History>> getHistory()async{
+  try {
+    Response response = await Apis.dio.get(
+      'https://api.luchian.co.ke/customer/loan-history/',
+    );
+    if(response.statusCode ==200){
+      final body = json.decode(response.data);
+      print(body);
+      return body;
+    }
+  } catch (e) {
+    print(e);
+  }
+  return [];
+}
+
+//loan history
+//
+Future<RequestResponseModel> requestLoan(RequestModel modelData) async {
+  Map? data;
+  Dio _dio = Dio();
+  try {
+    Response response = await _dio.post(
+      'https://api.luchian.co.ke/customer/loan-history/',
+      data: convertFormData(modelData.toJson()),
+    );
+
+    print('verified: ${response.data}');
+    data = response.data;
+  } on DioError catch (e) {
+    ///TODO MK ADD ERRORS
+    // MyException exection = MyException();
+    data = e.response!.data;
+    if (e.type == DioErrorType.response) {
+      print('catched');
+      print(e.response!.statusCode);
+      print(e.response!.data);
+      data = e.response!.data;
+      showToastError('Invalid data Provided');
+    }
+    if (e.type == DioErrorType.connectTimeout) {
+      print('check your connection');
+      showToastError('check your connection');
+    }
+
+    if (e.type == DioErrorType.receiveTimeout) {
+      print('unable to connect to the server');
+      showToastError('check your connection');
+    }
+
+    if (e.type == DioErrorType.other) {
+      print('Something went wrong');
+    }
+  }
+  return RequestResponseModel(data: data);
+}
+
+//loan history
+Dio _dio = Dio();
+  Future<List<History>> fetchHis() async {
+    var response =
+        await _dio.get("https://api.luchian.co.ke/customer/loan-history/");
+    if (response.statusCode == 200) {
+      var jsonString = response.data;
+      return historyFromJson(jsonString);
+
+    }
+    throw Exception('error fetching history');
+  }
