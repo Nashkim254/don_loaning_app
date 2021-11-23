@@ -22,6 +22,7 @@ try {
   var history = await fetchHis();
   if(history.isNotEmpty){
     historyList.assignAll(history);
+    print("Dataaaaa=> ${historyList}");
   }
 } finally {
   isLoadingHistory(false);

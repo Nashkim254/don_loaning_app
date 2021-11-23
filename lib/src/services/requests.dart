@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:don/src/Apis/api.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/history_model.dart';
+import 'package:don/src/models/loan_payback_model.dart';
 import 'package:don/src/models/login_model.dart';
 import 'package:don/src/models/otp_model.dart';
 import 'package:don/src/models/phone_model.dart';
@@ -325,3 +326,45 @@ Dio _dio = Dio();
     }
     throw Exception('error fetching history');
   }
+
+  //Loan repay
+Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData) async {
+  Map? data;
+  int? code;
+  try {
+    Response response = await Apis.dio.post(
+      'https://api.luchian.co.ke/mpesa/stk-push/',
+      data: convertFormData(modelData.toJson()),
+    );
+
+    print('paying in: ${response.data}');
+    data = response.data;
+    code =200;
+  } on DioError catch (e) {
+    ///TODO MK ADD ERRORS
+    // MyException exection = MyException();
+    data = e.response!.data;
+    code = e.response!.statusCode;
+    if (e.type == DioErrorType.response) {
+      print('catched');
+      print(e.response!.statusCode);
+      print(e.response!.data);
+      data = e.response!.data;
+      //showToastError('${e.response!.data['non_field_errors']}');
+    }
+    if (e.type == DioErrorType.connectTimeout) {
+      print('check your connection');
+      showToastError('check your connection');
+    }
+
+    if (e.type == DioErrorType.receiveTimeout) {
+      print('unable to connect to the server');
+      showToastError('check your connection');
+    }
+
+    if (e.type == DioErrorType.other) {
+      print('Something went wrong');
+    }
+  }
+  return LoanPayResponseModel(data: data,code: code!);
+}

@@ -33,7 +33,7 @@ class MyRouter {
             case LoansHistory.routeName:
               return  LoansHistory();
             case LoanApplication.routeName:
-              return const LoanApplication();
+              return  LoanApplication();
             case LoansPayback.routeName:
               return const LoansPayback();
             case Notifications.routeName:
