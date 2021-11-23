@@ -35,7 +35,7 @@ class MyRouter {
             case LoanApplication.routeName:
               return  LoanApplication();
             case LoansPayback.routeName:
-              return const LoansPayback();
+              return  LoansPayback();
             case Notifications.routeName:
               return const Notifications();
             case SettingsView.routeName:
