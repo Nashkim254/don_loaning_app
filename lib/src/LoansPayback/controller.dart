@@ -46,6 +46,7 @@ readToken() async {
     print(response.data);
     if (response.code == 200) {
       //Get.offAll(const NavigationView(), arguments: [number]);
+      Get.back();
       showToastSuccess("Paid in successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if (response.code == 400) {
