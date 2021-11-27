@@ -7,6 +7,7 @@ import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/history_model.dart';
 import 'package:don/src/models/loan_payback_model.dart';
 import 'package:don/src/models/login_model.dart';
+import 'package:don/src/models/notifications_model.dart';
 import 'package:don/src/models/otp_model.dart';
 import 'package:don/src/models/phone_model.dart';
 import 'package:don/src/models/register.dart';
@@ -394,4 +395,25 @@ Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData,String token) asyn
     }
   }
   return LoanPayResponseModel(data: data, code: code!);
+}
+
+
+//loan history
+Future<List<Notification>> notify(String token) async {
+  var response =
+      await _dio.get("https://api.luchian.co.ke/notify/",
+          options: Options(headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Token $token',
+          }));
+
+  if (response.statusCode == 200) {
+    var jsonString = response.data;
+    printSuccess(response.data);
+    return notificationFromJson(jsonString);
+  }else if(response.statusCode == 401){
+    showToastError("${response.statusCode}");
+  }
+  throw Exception('error fetching history');
 }

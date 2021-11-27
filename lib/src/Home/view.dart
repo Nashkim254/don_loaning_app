@@ -2,16 +2,36 @@ import 'package:don/src/Home/controller.dart';
 import 'package:don/src/LoanApplication/view.dart';
 import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:get/get.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
    HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
 final controller = Get.put(HomeController());
+Future<void> initSocket()async{
+  printSuccess("Connecting to service");
+IO.Socket socket = IO.io('wss://api.luchian.co.ke/ws/notify/${controller.number}', 
+    IO.OptionBuilder()
+      .setTransports(['websocket']) // for Flutter or Dart VM
+      .disableAutoConnect()  // disable auto-connection
+      .setExtraHeaders({'foo': 'bar'}) // optional
+      .build()
+  );
+socket.connect();
+
+}
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

@@ -69,6 +69,8 @@ class LoansHistory extends StatelessWidget {
                   ),
                 );
               });
-        }));
+        }
+        )
+        );
   }
 }
