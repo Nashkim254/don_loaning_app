@@ -17,9 +17,12 @@ class LoginController extends GetxController {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
-
   // Login user
   var isLoadingBills = true.obs;
+  updateToken(String token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('token', token);
+}
 
   loginMethod() async {
     print("Logining...");
@@ -41,14 +44,16 @@ class LoginController extends GetxController {
     LoginResponseModel response = await login(loginModel);
     print("code 2");
 
-    print(response.data);
+    printSuccess(response.data['key']);
+    updateToken(response.data['key']);
+    printSuccess('your token has been saved');
     if (response.code == 200) {
       Get.offAll(const NavigationView(), arguments: [number]);
       showToastSuccess("user Logged in successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if (response.code == 400) {
       print(response.code);
-      print(response.data['error']);
+      printError(response.data['error']);
 
       showToastError('${response.data['non_field_errors']}');
     }

@@ -12,9 +12,11 @@ import 'package:don/src/models/phone_model.dart';
 import 'package:don/src/models/register.dart';
 import 'package:don/src/models/request_loan_model.dart';
 import 'package:don/src/models/reset_pass_model.dart';
+
 FormData convertFormData(body) {
   return FormData.fromMap(body);
 }
+
 //send otp to phone
 Future<PhoneResponseModel> phone(PhoneModel modelData) async {
   Map? data;
@@ -54,7 +56,7 @@ Future<PhoneResponseModel> phone(PhoneModel modelData) async {
       print('Something went wrong');
     }
   }
-  return PhoneResponseModel(data: data,code:code!);
+  return PhoneResponseModel(data: data, code: code!);
 }
 
 //verify otp
@@ -95,6 +97,7 @@ Future<OtpResponseModel> verifyOtp(OtpModel modelData) async {
   }
   return OtpResponseModel(data: data);
 }
+
 //register user
 Future<RegisterResponseModel> register(RegisterModel modelData) async {
   Map? data;
@@ -107,7 +110,7 @@ Future<RegisterResponseModel> register(RegisterModel modelData) async {
 
     print('registered: ${response.data}');
     data = response.data;
-    code =200;
+    code = 200;
   } on DioError catch (e) {
     ///TODO MK ADD ERRORS
     // MyException exection = MyException();
@@ -134,9 +137,8 @@ Future<RegisterResponseModel> register(RegisterModel modelData) async {
       print('Something went wrong');
     }
   }
-  return RegisterResponseModel(data: data,code: code!);
+  return RegisterResponseModel(data: data, code: code!);
 }
-
 
 //Login user
 Future<LoginResponseModel> login(LoginModel modelData) async {
@@ -150,7 +152,7 @@ Future<LoginResponseModel> login(LoginModel modelData) async {
 
     print('logged in: ${response.data}');
     data = response.data;
-    code =200;
+    code = 200;
   } on DioError catch (e) {
     ///TODO MK ADD ERRORS
     // MyException exection = MyException();
@@ -177,7 +179,7 @@ Future<LoginResponseModel> login(LoginModel modelData) async {
       print('Something went wrong');
     }
   }
-  return LoginResponseModel(data: data,code: code!);
+  return LoginResponseModel(data: data, code: code!);
 }
 
 //Reset password
@@ -218,6 +220,7 @@ Future<PhoneResponseModel> requestResetCode(PhoneModel modelData) async {
   }
   return PhoneResponseModel(data: data);
 }
+
 //Reset password
 Future<RestResponseModel> resetPass(ResetModel modelData) async {
   Map? data;
@@ -257,12 +260,16 @@ Future<RestResponseModel> resetPass(ResetModel modelData) async {
   return RestResponseModel(data: data);
 }
 
-Future<List<History>> getHistory()async{
+Future<List<History>> getHistory(String token) async {
   try {
-    Response response = await Apis.dio.get(
-      'https://api.luchian.co.ke/customer/loan-history/',
-    );
-    if(response.statusCode ==200){
+    Response response =
+        await Apis.dio.get('https://api.luchian.co.ke/customer/loan-history/',
+            options: Options(headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': 'Token $token',
+            }));
+    if (response.statusCode == 200) {
       final body = json.decode(response.data);
       print(body);
       return body;
@@ -275,14 +282,19 @@ Future<List<History>> getHistory()async{
 
 //loan history
 //
-Future<RequestResponseModel> requestLoan(RequestModel modelData) async {
+Future<RequestResponseModel> requestLoan(
+    RequestModel modelData, String token) async {
   Map? data;
   Dio _dio = Dio();
   try {
-    Response response = await _dio.post(
-      'https://api.luchian.co.ke/customer/loan-history/',
-      data: convertFormData(modelData.toJson()),
-    );
+    Response response =
+        await _dio.post('https://api.luchian.co.ke/customer/loan-history/',
+            data: convertFormData(modelData.toJson()),
+            options: Options(headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': 'Token $token',
+            }));
 
     print('verified: ${response.data}');
     data = response.data;
@@ -316,30 +328,45 @@ Future<RequestResponseModel> requestLoan(RequestModel modelData) async {
 
 //loan history
 Dio _dio = Dio();
-  Future<List<History>> fetchHis() async {
-    var response =
-        await _dio.get("https://api.luchian.co.ke/customer/loan-history/");
-    if (response.statusCode == 200) {
-      var jsonString = response.data;
-      return historyFromJson(jsonString);
+Future<List<History>> fetchHis(String token) async {
+  var response =
+      await _dio.get("https://api.luchian.co.ke/customer/loan-history/",
+          options: Options(headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Token $token',
+          }));
 
-    }
-    throw Exception('error fetching history');
+  if (response.statusCode == 200) {
+    var jsonString = response.data;
+    return historyFromJson(jsonString);
+  }else if(response.statusCode == 401){
+    showToastError("${response.statusCode}");
   }
+  throw Exception('error fetching history');
+}
 
-  //Loan repay
-Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData) async {
+//Loan repay
+Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData,String token) async {
   Map? data;
   int? code;
   try {
-    Response response = await Apis.dio.post(
+    printSuccess(token);
+    Response response = await Dio().post(
       'https://api.luchian.co.ke/mpesa/stk-push/',
       data: convertFormData(modelData.toJson()),
+      options: Options(
+         headers: {
+        'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+      }
+      )
     );
 
     print('paying in: ${response.data}');
     data = response.data;
-    code =200;
+    code = 200;
   } on DioError catch (e) {
     ///TODO MK ADD ERRORS
     // MyException exection = MyException();
@@ -366,5 +393,5 @@ Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData) async {
       print('Something went wrong');
     }
   }
-  return LoanPayResponseModel(data: data,code: code!);
+  return LoanPayResponseModel(data: data, code: code!);
 }

@@ -26,8 +26,7 @@ final controller = Get.put(LoanRepayController());
           ),
         ),
         body: SingleChildScrollView(
-          child: Obx( () {
-              return Column(
+          child:  Column(
                 children: [
                   SizedBox(height: 20.h),
                   Container(
@@ -43,7 +42,7 @@ final controller = Get.put(LoanRepayController());
                             elevation: 5,
                             child: GestureDetector(
                               onTap: () {
-                                controller.loanRepayMethod();
+                                controller.loanRepayMethod(controller.token);
                                 // Navigator.pushNamed(context, '/hhistory');
                               },
                               child: Container(
@@ -119,9 +118,8 @@ final controller = Get.put(LoanRepayController());
                     ),
                   ),
                 ],
-              );
-            }
-          ),
+              ),
+            
         ));
   }
 }

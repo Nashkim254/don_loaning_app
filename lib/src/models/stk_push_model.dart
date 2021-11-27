@@ -1,9 +1,9 @@
-class LoanPayResponseModel<T>{
+class StkResponseModel<T>{
 
   T data;
   int code;
 
-  LoanPayResponseModel({
+  StkResponseModel({
     required this.data,
     this.code=200
   });
@@ -13,18 +13,16 @@ class LoanPayResponseModel<T>{
 
 
 
-class LoanPayModel {
-  int? amount;
-  //String? email;
+class StkModel {
+  String? amount;
   String? phone;
 
-  LoanPayModel({
+  StkModel({
     required this.amount,
-   // required this.email,
     required this.phone,
   });
 
-  LoanPayModel.fromJson(Map<String, dynamic> json) {
+  StkModel.fromJson(Map<String, dynamic> json) {
     amount = json['amount'];
    // email = json['email'];
     phone = json['phone'];

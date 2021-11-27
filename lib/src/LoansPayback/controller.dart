@@ -13,12 +13,21 @@ class LoanRepayController extends GetxController {
  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
+  var token;
+
+readToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+ token = prefs.getString('token')!;
+ update();
+ return token;
+}
   @override
   void onInit() {
+    readToken();
     super.onInit();
   }
 
-  loanRepayMethod() async {
+  loanRepayMethod(String token) async {
     print("Load...");
   //print("=========" + formatLoginNumber(username.text));
     Get.dialog(CustomDialog(), barrierDismissible: false);
@@ -26,11 +35,12 @@ class LoanRepayController extends GetxController {
    final SharedPreferences prefs = await _prefs;
     number = prefs.getString("number");
     result.value = number!;
+    printSuccess(formatLoginNumber(number!));
     LoanPayModel loanModel = LoanPayModel(
-      amount:"10",
-      phone: formatPhoneNumber(result.value)
+      amount:1000,
+      phone: formatPhoneNumber(number!)
     );
-    LoanPayResponseModel response = await loanRepay(loanModel);
+    LoanPayResponseModel response = await loanRepay(loanModel,token);
     print("code 2");
 
     print(response.data);
@@ -43,6 +53,10 @@ class LoanRepayController extends GetxController {
       print(response.data['error']);
 
       showToastError('${response.data['non_field_errors']}');
+    }else if(response.code == 401){
+      printError(token);
+      Get.back();
+      showToastError("${response.data['detail']}");
     }
     update();
   }

@@ -185,7 +185,8 @@ class LoanApplication extends StatelessWidget {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () {
-                            controller.uploadFile(controller.file);
+                            print(controller.token);
+                            controller.uploadFile(controller.file,controller.token);
                             // Navigator.pushNamed(context, '/request');
                           },
                           child: Container(
