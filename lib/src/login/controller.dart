@@ -17,6 +17,12 @@ class LoginController extends GetxController {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
+  var isObscure = true.obs;
+
+
+  changeObscure(){
+    isObscure.toggle();
+  }
   // Login user
   var isLoadingBills = true.obs;
   updateToken(String token) async {

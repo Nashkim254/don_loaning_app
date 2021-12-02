@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
+import 'package:don/src/helpers/toasts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
@@ -63,10 +64,11 @@ readToken() async {
   void uploadFile(filePath,String token) async {
     await getFile();
     String fileName = basename(filePath.path);
+    printSuccess(fileName);
     try {
       var requestBody = {
         'amount': 10000,
-        'filled_form': await dio.MultipartFile.fromFileSync(filePath.path,
+        'filled_form': await dio.MultipartFile.fromFile(filePath.path,
             filename: fileName),
       };
       dio.Response response = await dio.Dio().post(
@@ -80,7 +82,11 @@ readToken() async {
             }
           )
           );
-      print("File upload response: $response");
+          if(response.statusCode == 200){
+
+      printSuccess("File upload response: $response");
+      showToastSuccess("file uploaded");
+          }
     } catch (e) {
       print("Exception occurered $e");
     }

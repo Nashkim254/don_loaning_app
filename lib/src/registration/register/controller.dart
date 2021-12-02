@@ -18,6 +18,12 @@ class RegisterController extends GetxController {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
+  var isObscure = true.obs;
+
+
+  changeObscure(){
+    isObscure.toggle();
+  }
   goToSuccessPagege() {
     Future.delayed(
       const Duration(seconds: 2),

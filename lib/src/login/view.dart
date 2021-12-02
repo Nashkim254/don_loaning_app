@@ -77,15 +77,21 @@ class Login extends StatelessWidget {
                     ),
                   ],
                 ),
-                child:  TextField(
-                  controller: controller.pass,
-                  style: theme.textTheme.bodyText1,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      label: Text('Password'),
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      suffix: Icon(Icons.remove_red_eye)),
+                child:  Obx( () {
+                    return TextField(
+                      controller: controller.pass,
+                      style: theme.textTheme.bodyText1,
+                      obscureText: controller.isObscure.value,
+                      decoration:  InputDecoration(
+                          label: Text('Password'),
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          suffix: IconButton(onPressed: (){
+                            controller.changeObscure();
+                          }, icon: Icon(controller.isObscure.value ? Icons.visibility : Icons.visibility_off)),
+                          ),
+                    );
+                  }
                 ),
               ),
             ),
