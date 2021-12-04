@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
@@ -8,6 +9,7 @@ import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class RequestLoan extends GetxController {
   var isLoading = false.obs;
@@ -63,33 +65,75 @@ readToken() async {
 
   void uploadFile(filePath,String token) async {
     await getFile();
-    String fileName = basename(filePath.path);
-    printSuccess(fileName);
-    try {
-      var requestBody = {
-        'amount': 10000,
-        'filled_form': await dio.MultipartFile.fromFile(filePath.path,
-            filename: fileName),
-      };
-      dio.Response response = await dio.Dio().post(
-          "https://api.luchian.co.ke/customer/request-loan/",
-          data: requestBody,
-          options: dio.Options(
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              'Accept': 'application/json',
-              'Authorization': 'Token $token',
-            }
-          )
-          );
-          if(response.statusCode == 200){
+String fileName = basename(filePath.path);
+    // string to uri
+    var uri = Uri.parse("https://api.luchian.co.ke/customer/request-loan/");
 
-      printSuccess("File upload response: $response");
-      showToastSuccess("file uploaded");
-          }
-    } catch (e) {
-      print("Exception occurered $e");
+    // create multipart request
+    var request =  http.MultipartRequest("POST", uri);
+
+    // if you need more parameters to parse, add those like this. i added "user_id". here this "user_id" is a key of the API request
+    var headers = {'Authorization': 'Token $token'};
+     request.fields.addAll({'amount': '1000'}); 
+request.headers.addAll(headers);
+    // multipart that takes file.. here this "idDocumentOne_1" is a key of the API request
+   var  multipartFile = (await http.MultipartFile.fromPath(
+          "filled_form",
+          filePath.path,
+    )) ;
+
+    // add file to multipart
+    request.files.addAll({multipartFile});
+
+    // send request to upload file
+    await request.send().then((response) async {
+   
+      // listen for response
+      response.stream.transform(utf8.decoder).listen((value) {
+        printSuccess("this is the value"+value);
+      });
+     if (response.statusCode == 200) {
+      printSuccess(await response.stream.bytesToString());
+      return true;
+    } else {
+      printError(response.reasonPhrase);
+      return false;
     }
+    }).catchError((e) {
+      printError(e);
+    });
     update();
   }
+
+  // void uploadFile(filePath,String token) async {
+  //   await getFile();
+  //   String fileName = basename(filePath.path);
+  //   printSuccess(fileName);
+  //   try {
+  //     var requestBody = {
+  //       'amount': 10000,
+  //       'filled_form': await dio.MultipartFile.fromFile(filePath.path,
+  //           filename: fileName),
+  //     };
+  //     dio.Response response = await dio.Dio().post(
+  //         "https://api.luchian.co.ke/customer/request-loan/",
+  //         data: requestBody,
+  //         options: dio.Options(
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data',
+  //             'Accept': 'application/json',
+  //             'Authorization': 'Token $token',
+  //           }
+  //         )
+  //         );
+  //         if(response.statusCode == 200){
+
+  //     printSuccess("File upload response: $response");
+  //     showToastSuccess("file uploaded");
+  //         }
+  //   } catch (e) {
+  //     print("Exception occurered $e");
+  //   }
+  //   update();
+  // }
 }
