@@ -1,4 +1,5 @@
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/registration/register/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,7 +81,7 @@ class Register extends StatelessWidget {
                       controller: cont.pass1,
                       style: theme.textTheme.bodyText1,
                       decoration:  InputDecoration(
-                          label: Text('Password'),
+                          label:const Text('Password'),
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           
@@ -109,21 +110,32 @@ class Register extends StatelessWidget {
                       ],
                     ),
                     child:  TextField(
-                      obscureText: true,
+                      obscureText: cont.isObscure.value,
                       controller: cont.pass2,
                       style: theme.textTheme.bodyText1,
                       decoration: InputDecoration(
                           label: const Text('Confirm password'),
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
-                          suffix: Icon(Icons.remove_red_eye,color: textColor,)),
+                                   suffix: IconButton(onPressed: (){
+                            cont.changeObscure();
+                          }, icon: Icon(cont.isObscure.value ? Icons.visibility : Icons.visibility_off)),
+                          ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 33.h, left: 150.w, right: 150.w),
                   child: GestureDetector(
-                    onTap: () => cont.registerMethod(),
+                    onTap: () {
+                        if(cont.pass1.text == cont.pass2.text){
+                            cont.registerMethod();
+                        }else{
+                          Navigator.pop(context);
+                          showToastError("Passwords do not match");
+                        }
+                        
+                    } ,
                     child: Container(
                       child: Image.asset("assets/images/go.png"),
                     ),
@@ -135,8 +147,10 @@ class Register extends StatelessWidget {
                     children: [
                       Checkbox(
                         checkColor: primaryColor,
-                        value: true,
-                        onChanged: (value) {},
+                        value: cont.isChecked.value,
+                        onChanged: (value) {
+                          cont.onClick(true);
+                        },
                       ),
                       SizedBox(width: 5.w),
                       RichText(

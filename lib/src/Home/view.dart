@@ -30,6 +30,7 @@ IO.Socket socket = IO.io('wss://api.luchian.co.ke/ws/notify/${controller.number}
       .build()
   );
 socket.connect();
+socket.onConnect((data) => printSuccess("connected"));
 
 }
   @override

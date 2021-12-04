@@ -34,7 +34,11 @@ class RegisterController extends GetxController {
       const Success(),
     );
   }
-
+  var isChecked = true.obs;
+onClick(value){
+isChecked.toggle();
+update();
+}
   // register user
   var isLoadingBills = true.obs;
 
@@ -55,21 +59,20 @@ class RegisterController extends GetxController {
       email: email.text,
       password1: pass1.text,
       password2: pass2.text,
-      username:formatPhoneNumber(number!),
+      username:number,
     );
+    printError("called");
     RegisterResponseModel response = await register(registerModel);
     print("code 2");
 
     print(response.code);
     if (response.code == 200) {
-      goToSuccessPagege();
+      Get.to(()=> Login());
       showToastSuccess("user registered successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if(response.code == 400){
-      print(response.code);
-      print(response.data['error']);
-
-      showToastError('User Already exists');
+Get.to(()=> Login());
+      showToastError('User Already exists please login');
     }
     update();
   }

@@ -80,7 +80,7 @@ request.headers.addAll(headers);
    var  multipartFile = (await http.MultipartFile.fromPath(
           "filled_form",
           filePath.path,
-    )) ;
+    ));
 
     // add file to multipart
     request.files.addAll({multipartFile});
@@ -90,7 +90,7 @@ request.headers.addAll(headers);
    
       // listen for response
       response.stream.transform(utf8.decoder).listen((value) {
-        printSuccess("this is the value"+value);
+        showToastSuccess(value);
       });
      if (response.statusCode == 200) {
       printSuccess(await response.stream.bytesToString());

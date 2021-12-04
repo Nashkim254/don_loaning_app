@@ -58,7 +58,6 @@ class LoginController extends GetxController {
       showToastSuccess("user Logged in successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if (response.code == 400) {
-      print(response.code);
       printError(response.data['error']);
 
       showToastError('${response.data['non_field_errors']}');

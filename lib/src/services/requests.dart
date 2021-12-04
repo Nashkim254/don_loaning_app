@@ -13,6 +13,7 @@ import 'package:don/src/models/phone_model.dart';
 import 'package:don/src/models/register.dart';
 import 'package:don/src/models/request_loan_model.dart';
 import 'package:don/src/models/reset_pass_model.dart';
+import 'package:get/get.dart' as state;
 
 FormData convertFormData(body) {
   return FormData.fromMap(body);
@@ -164,7 +165,8 @@ Future<LoginResponseModel> login(LoginModel modelData) async {
       print(e.response!.statusCode);
       print(e.response!.data);
       data = e.response!.data;
-      //showToastError('${e.response!.data['non_field_errors']}');
+      state.Get.back();
+      showToastError('${e.response!.data['non_field_errors']}');
     }
     if (e.type == DioErrorType.connectTimeout) {
       print('check your connection');
@@ -340,6 +342,7 @@ Future<List<History>> fetchHis(String token) async {
 
   if (response.statusCode == 200) {
     var jsonString = response.data;
+    printSuccess(jsonString);
     return historyFromJson(jsonString);
   }else if(response.statusCode == 401){
     showToastError("${response.statusCode}");
