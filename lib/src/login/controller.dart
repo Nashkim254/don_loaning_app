@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:don/src/constants/constants.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/login/view.dart';
@@ -18,11 +20,11 @@ class LoginController extends GetxController {
   String? number;
   var result = ''.obs;
   var isObscure = true.obs;
-
-
   changeObscure(){
     isObscure.toggle();
   }
+  var initialValue;
+  var bytesInLatin1_decoded;
   // Login user
   var isLoadingBills = true.obs;
   updateToken(String token) async {
@@ -44,7 +46,7 @@ class LoginController extends GetxController {
     print(number);
     print(pass.text);
     LoginModel loginModel = LoginModel(
-      username: formatPhoneNumber(username.text),
+      username: formatLoginNumber(username.text),
       password: pass.text,
     );
     LoginResponseModel response = await login(loginModel);
@@ -53,7 +55,13 @@ class LoginController extends GetxController {
     printSuccess(response.data['key']);
     updateToken(response.data['key']);
     printSuccess('your token has been saved');
+
+// decoding
+ // bytesInLatin1_decoded = base64.decode(response.data['key']);
+//  Codec<String, String> stringToBase64 = utf8.fuse(base64);
+//        initialValue =    stringToBase64.decode(response.data['key']);
     if (response.code == 200) {
+      printSuccess(initialValue);
       Get.offAll(const NavigationView(), arguments: [number]);
       showToastSuccess("user Logged in successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);

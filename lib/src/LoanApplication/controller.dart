@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
+import 'package:don/src/LoanApplication/loaan_success.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
@@ -105,6 +106,50 @@ request.headers.addAll(headers);
     update();
   }
 
+
+
+
+  void applyLoan(filePath,String token) async {
+String fileName = basename(filePath.path);
+    // string to uri
+    var uri = Uri.parse("https://api.luchian.co.ke/customer/request-loan/");
+
+    // create multipart request
+    var request =  http.MultipartRequest("POST", uri);
+
+    // if you need more parameters to parse, add those like this. i added "user_id". here this "user_id" is a key of the API request
+    var headers = {'Authorization': 'Token $token'};
+     request.fields.addAll({'amount': '1000'}); 
+request.headers.addAll(headers);
+    // multipart that takes file.. here this "idDocumentOne_1" is a key of the API request
+   var  multipartFile = (await http.MultipartFile.fromPath(
+          "filled_form",
+          filePath.path,
+    ));
+
+    // add file to multipart
+    request.files.addAll({multipartFile});
+
+    // send request to upload file
+    await request.send().then((response) async {
+   
+      // listen for response
+      response.stream.transform(utf8.decoder).listen((value) {
+        Get.to(()=> const LoanSuccess());
+        showToastSuccess(value);
+      });
+     if (response.statusCode == 200) {
+      printSuccess(await response.stream.bytesToString());
+      return true;
+    } else {
+      printError(response.reasonPhrase);
+      return false;
+    }
+    }).catchError((e) {
+      printError(e);
+    });
+    update();
+  }
   // void uploadFile(filePath,String token) async {
   //   await getFile();
   //   String fileName = basename(filePath.path);

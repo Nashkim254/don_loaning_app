@@ -4,6 +4,7 @@ import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/loanHistory/view.dart';
+import 'package:don/src/navigation/controller.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,6 +21,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 final controller = Get.put(HomeController());
+ final navigationController = Get.put(NavigationController());
 Future<void> initSocket()async{
   printSuccess("Connecting to service");
 IO.Socket socket = IO.io('wss://api.luchian.co.ke/ws/notify/${controller.number}', 
@@ -40,13 +42,14 @@ socket.onConnect((data) => printSuccess("connected"));
         backgroundColor: pinBackgroundColor,
         appBar: AppBar(
           leading: Image.asset("assets/images/logo.png"),
-          title: Obx(() {
+          title:  Obx( () {
               return Text(
-                "Hi, ${controller.result.value}",
-                style: theme.textTheme.bodyText1!.copyWith(),
-              );
+                    "Hi, ${controller.result.value}",
+                    style: theme.textTheme.bodyText1!.copyWith(),
+                  );
             }
           ),
+            
           actions: [
             Image.asset("assets/images/notify.png"),
             Image.asset("assets/images/profile.png")

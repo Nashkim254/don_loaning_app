@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class NavigationController extends GetxController {
 
   var isSelected = 0;
-
+var data = Get.arguments;
   Widget tab() {
     //provisions to check role and pick correct tabs
     return tabClient[isSelected];

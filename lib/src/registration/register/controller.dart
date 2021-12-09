@@ -1,4 +1,3 @@
-import 'package:don/src/constants/constants.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/login/view.dart';
 import 'package:don/src/models/register.dart';
@@ -15,7 +14,7 @@ class RegisterController extends GetxController {
   final TextEditingController pass1 = TextEditingController();
   final TextEditingController pass2 = TextEditingController();
   var data = Get.arguments;
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
   var isObscure = true.obs;
@@ -39,22 +38,15 @@ onClick(value){
 isChecked.toggle();
 update();
 }
-  // register user
+  /// register user
   var isLoadingBills = true.obs;
 
   registerMethod() async {
-    print("registering...");
     Get.dialog(CustomDialog(), barrierDismissible: true);
     isLoadingBills.toggle();
     final SharedPreferences prefs = await _prefs;
     number = prefs.getString("number");
     result.value = number!;
-    print("code1");
-    print(isLoadingBills);
-    print(email.text);
-    print(number);
-    print(pass2.text);
-    print(pass1.text);
     RegisterModel registerModel = RegisterModel(
       email: email.text,
       password1: pass1.text,
@@ -63,9 +55,6 @@ update();
     );
     printError("called");
     RegisterResponseModel response = await register(registerModel);
-    print("code 2");
-
-    print(response.code);
     if (response.code == 200) {
       Get.to(()=> Login());
       showToastSuccess("user registered successfully");

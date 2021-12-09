@@ -13,6 +13,7 @@ import 'package:don/src/models/phone_model.dart';
 import 'package:don/src/models/register.dart';
 import 'package:don/src/models/request_loan_model.dart';
 import 'package:don/src/models/reset_pass_model.dart';
+import 'package:don/src/models/user_model.dart';
 import 'package:get/get.dart' as state;
 
 FormData convertFormData(body) {
@@ -342,6 +343,7 @@ Future<List<History>> fetchHis(String token) async {
 
   if (response.statusCode == 200) {
     var jsonString = response.data;
+    printSuccess("this was called");
     printSuccess(jsonString);
     return historyFromJson(jsonString);
   }else if(response.statusCode == 401){
@@ -401,7 +403,7 @@ Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData,String token) asyn
 }
 
 
-//loan history
+//notifications
 Future<List<Notification>> notify(String token) async {
   var response =
       await _dio.get("https://api.luchian.co.ke/notify/",
@@ -415,6 +417,27 @@ Future<List<Notification>> notify(String token) async {
     var jsonString = response.data;
     printSuccess(response.data);
     return notificationFromJson(jsonString);
+  }else if(response.statusCode == 401){
+    showToastError("${response.statusCode}");
+  }
+  throw Exception('error fetching history');
+}
+
+//get user
+Future<User> getUser(String token) async {
+  var response =
+      await Apis.dio.get(
+        "/user/",
+          options: Options(headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Token $token',
+          }));
+
+  if (response.statusCode == 200) {
+    var jsonString = response.data;
+    printSuccess("request for user" + response.data);
+    return userFromJson(jsonString);
   }else if(response.statusCode == 401){
     showToastError("${response.statusCode}");
   }

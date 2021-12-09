@@ -177,7 +177,7 @@ class LoanApplication extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 79.h),
+                  SizedBox(height: 30.h),
                   ShakeTransition(
                     child: Padding(
                       padding: EdgeInsets.only(left: 90.w, right: 90.w),
@@ -215,6 +215,44 @@ class LoanApplication extends StatelessWidget {
                                     child: Icon(Icons.upload, color: primaryColor))
                               ],
                             ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                    SizedBox(height: 40.h,),
+                   ShakeTransition(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 90.w, right: 90.w),
+                      child: Card(
+                        elevation: 5,
+                        child: GestureDetector(
+                          onTap: () {
+                            print(controller.token);
+                            controller.applyLoan(controller.file,controller.token);
+                            // Navigator.pushNamed(context, '/request');
+                          },
+                          child: Container(
+                            height: 30.h,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: primaryColor,
+                            ),
+                            child:
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: Text(
+                                      "Apply Loan",
+                                      style: theme.textTheme.bodyText1!.copyWith(
+                                        color: cardLightColor,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                           ),
                         ),
                       ),

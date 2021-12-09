@@ -23,19 +23,23 @@ readToken() async {
   void onInit() {
     
     readToken();
-    fetchHistory(token);
+    fetchHistory();
     super.onInit();
   }
-void fetchHistory(String token)async{
+ fetchHistory()async{
 try {
 
   printSuccess("This is your key" + token);
   isLoadingHistory(true);
   var history = await fetchHis(token);
+      printSuccess("Reached here");
   printSuccess(history);
   if(history.isNotEmpty){
     historyList.assignAll(history);
-    printSuccess("Dataaaaa=> ${historyList}");
+    printSuccess("Reached here");
+    printSuccess(historyList);
+    update();
+    return historyList;
   }
 } finally {
   isLoadingHistory(false);
