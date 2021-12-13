@@ -9,7 +9,7 @@ import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class OtpController extends GetxController {
   String text = '';
@@ -17,8 +17,8 @@ class OtpController extends GetxController {
   bool _keyboardVisible = false;
   final TextEditingController otpController = TextEditingController();
   var data = Get.arguments;
-Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
    String? number;
+   var box;
    var result = ''.obs;
   void onKeyboardTap(String value) {
     text = text + value;
@@ -27,7 +27,11 @@ Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     }
     update();
   }
-
+@override
+void onInit()async{
+  super.onInit();
+    box = await Hive.openBox('userInfo');
+}
   updateSelect() {
     text = text.substring(0, text.length - 1);
     update();
@@ -46,8 +50,8 @@ Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     print("verifying...");
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoadingBills.toggle();
-    final SharedPreferences prefs = await _prefs;
-    number = prefs.getString("number");
+    box = await Hive.openBox('userInfo');
+    number = box.get("number");
     result.value = number!;
     print("code1");
     print(isLoadingBills);

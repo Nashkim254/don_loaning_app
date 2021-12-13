@@ -9,26 +9,30 @@ import 'package:don/src/registration/success/view.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ResetPassController extends GetxController {
   final TextEditingController code = TextEditingController();
   final TextEditingController pass1 = TextEditingController();
   final TextEditingController pass2 = TextEditingController();
   var data = Get.arguments;
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
+  var box;
 
   // Login user
   var isLoadingBills = true.obs;
-
+@override
+  void onInit() async {
+    box = await Hive.openBox('userInfo');
+    super.onInit();
+  }
   resetMethod() async {
     print("Logining...");
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoadingBills.toggle();
-    final SharedPreferences prefs = await _prefs;
-    number = prefs.getString("number");
+    box = await Hive.openBox('userInfo');
+    number = box.get("number");
     result.value = number!;
     print("code1");
     print(isLoadingBills);

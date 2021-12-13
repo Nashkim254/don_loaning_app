@@ -8,7 +8,6 @@ import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoanRepayController extends GetxController {
   TextEditingController amountCont = TextEditingController();

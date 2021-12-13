@@ -1,13 +1,9 @@
-import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/history_model.dart';
-import 'package:don/src/registration/otp/controller.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HistoryController extends GetxController {
   var isLoadingHistory = true.obs;

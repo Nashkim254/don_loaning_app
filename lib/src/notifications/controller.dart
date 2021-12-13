@@ -1,13 +1,9 @@
-import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/notifications_model.dart';
-import 'package:don/src/notifications/view.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationController extends GetxController {
   var isLoading = true.obs;

@@ -7,7 +7,6 @@ import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends GetxController {
   final TextEditingController username = TextEditingController();
@@ -15,7 +14,6 @@ class RegisterController extends GetxController {
   final TextEditingController pass1 = TextEditingController();
   final TextEditingController pass2 = TextEditingController();
   var data = Get.arguments;
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
   var isObscure = true.obs;
@@ -54,9 +52,9 @@ class RegisterController extends GetxController {
   registerMethod() async {
     Get.dialog(CustomDialog(), barrierDismissible: true);
     isLoadingBills.toggle();
-    final SharedPreferences prefs = await _prefs;
-    number = prefs.getString("number");
-    result.value = number!;
+    // final SharedPreferences prefs = await _prefs;
+    // number = prefs.getString("number");
+    // result.value = number!;
    // user = box.get('number');
    // printSuccess("youre + $user");
     RegisterModel registerModel = RegisterModel(

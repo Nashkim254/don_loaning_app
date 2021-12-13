@@ -10,7 +10,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class RequestLoan extends GetxController {
@@ -29,8 +28,9 @@ class RequestLoan extends GetxController {
     update();
   }
   @override
-  void onInit(){
+  void onInit()async{
     readToken();
+    box = await Hive.openBox('userInfo');
     super.onInit();
   }
 readToken() async {

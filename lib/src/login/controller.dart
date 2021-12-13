@@ -11,13 +11,11 @@ import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final TextEditingController username = TextEditingController();
   final TextEditingController pass = TextEditingController();
   var data = Get.arguments;
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
   var box;
