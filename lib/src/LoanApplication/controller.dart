@@ -15,6 +15,7 @@ import 'package:http/http.dart' as http;
 
 class RequestLoan extends GetxController {
   var isLoading = false.obs;
+  var isLoadingApp = false.obs;
   File? file;
   var box;
   var token;
@@ -114,7 +115,7 @@ request.headers.addAll(headers);
 
 
   void applyLoan(filePath,String token) async {
-    isLoading.value = true;
+    isLoadingApp.value=true;
 String fileName = basename(filePath.path);
     // string to uri
     var uri = Uri.parse("https://api.luchian.co.ke/customer/request-loan/");
@@ -139,7 +140,7 @@ request.headers.addAll(headers);
    
       // listen for response
       response.stream.transform(utf8.decoder).listen((value) {
-        isLoading.value=false;
+        isLoadingApp.value=false;
         Get.to(()=> const LoanSuccess());
         showToastSuccess(value);
       });
