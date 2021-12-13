@@ -57,7 +57,7 @@ class LoansHistory extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(Icons.email, color: primaryColor),
                     title: Text(
-                      "Received Ksh. ${controller.historyList[index].amount}",
+                      "Applied for Ksh. ${controller.historyList[index].amount}",
                       style: theme.textTheme.bodyText1!.copyWith(
                           color: blackColor,
                           fontSize: 14.sp,
