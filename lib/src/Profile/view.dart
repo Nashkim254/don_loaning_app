@@ -111,7 +111,7 @@ class ProfileView extends StatelessWidget {
                               padding: EdgeInsets.only(bottom: 0.h),
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.to(EditProfile());
+                                //  Get.to(EditProfile());
                                 },
                                 child: Container(
                                   height: 30,
@@ -123,16 +123,16 @@ class ProfileView extends StatelessWidget {
                                       bottomRight: Radius.circular(15.r),
                                     ),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Edit details",
-                                      style: theme.textTheme.bodyText1!
-                                          .copyWith(
-                                              color: cardLightColor,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
+                                  // child: Center(
+                                  //   child: Text(
+                                  //     "Edit details",
+                                  //     style: theme.textTheme.bodyText1!
+                                  //         .copyWith(
+                                  //             color: cardLightColor,
+                                  //             fontSize: 14.sp,
+                                  //             fontWeight: FontWeight.w600),
+                                  //   ),
+                                  // ),
                                 ),
                               ),
                             ),
@@ -167,7 +167,7 @@ class ProfileView extends StatelessWidget {
                                   Padding(
                                       padding: EdgeInsets.only(
                                           left: 18.w, top: 13.h),
-                                      child: Icon(Icons.notifications)),
+                                      child: const Icon(Icons.notifications)),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(

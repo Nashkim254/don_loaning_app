@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/notifications_model.dart';
+import 'package:don/src/notifications/view.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -26,23 +27,23 @@ readToken() async {
   void onInit() {
     
     readToken();
-    fetchHistory(token);
+    fetchNotifications(token);
     super.onInit();
   }
-void fetchHistory(String token)async{
-try {
+Future<void> fetchNotifications(String token)async{
+
 
   printSuccess("This is your key" + token);
-  isLoading(true);
+  isLoading.value=true;
   var notification = await notify(token);
   printSuccess("Your notification  $notification");
-  if(notification.isNotEmpty){
-    notificationList.assignAll(notification);
-    printSuccess("Dataaaaa=> ${notificationList}");
-  }
-} finally {
-  isLoading(false);
-}
-}
+ notification.forEach((items){
+notificationList.add(Notification.fromJson(items.toJson()));
+  });
+  isLoading.value = false;
 
+}
+  Notification getDetails(int index){
+    return notificationList[index];
+  }
 }

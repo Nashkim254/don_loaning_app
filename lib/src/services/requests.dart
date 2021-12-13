@@ -454,22 +454,23 @@ Future<TransResponseModel> transRepay(TransModel modelData,String token) async {
 
 //notifications
 Future<List<Notification>> notify(String token) async {
-  var response =
+  try{
+  Response response =
       await _dio.get("https://api.luchian.co.ke/notify/",
           options: Options(headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': 'Token $token',
           }));
-
-  if (response.statusCode == 200) {
-    var jsonString = response.data;
-    printSuccess(response.data);
-    return notificationFromJson(jsonString);
-  }else if(response.statusCode == 401){
-    showToastError("${response.statusCode}");
+    if (response.statusCode == 200) {
+      final body = json.decode(response.data);
+      print(body);
+      return body;
+    }
+  } catch (e) {
+    print(e);
   }
-  throw Exception('error fetching history');
+  return [];
 }
 
 //get user
