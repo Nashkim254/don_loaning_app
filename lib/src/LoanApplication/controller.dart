@@ -6,6 +6,7 @@ import 'package:don/src/LoanApplication/loaan_success.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,6 +16,7 @@ import 'package:http/http.dart' as http;
 class RequestLoan extends GetxController {
   var isLoading = false.obs;
   File? file;
+  var box;
   var token;
   Future openFile({required String url, String? fileName}) async {
     isLoading(true);
@@ -31,8 +33,10 @@ class RequestLoan extends GetxController {
     super.onInit();
   }
 readToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
- token = prefs.getString('token')!;
+  box = await Hive.openBox('userInfo');
+  printSuccess("read token from box");
+ token = box.get('token')!;
+ printSuccess(token);
  update();
  return token;
 }

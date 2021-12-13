@@ -10,6 +10,7 @@ import 'package:don/src/registration/success/view.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
@@ -19,6 +20,7 @@ class LoginController extends GetxController {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? number;
   var result = ''.obs;
+  var box;
   var isObscure = true.obs;
   changeObscure(){
     isObscure.toggle();
@@ -28,23 +30,20 @@ class LoginController extends GetxController {
   // Login user
   var isLoadingBills = true.obs;
   updateToken(String token) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('token', token);
+  box = await Hive.openBox('userInfo');
+  box.put('token', token);
+  printSuccess("tokennsaved to box");
 }
-
+@override
+void onInit()async{
+  super.onInit();
+  box = await Hive.openBox('userInfo');
+}
   loginMethod() async {
     print("Logining...");
     print("=========" + formatLoginNumber(username.text));
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoadingBills.toggle();
-    final SharedPreferences prefs = await _prefs;
-    number = prefs.getString("number");
-    result.value = number!;
-    print("code1");
-    print(isLoadingBills);
-    print(username.text);
-    print(number);
-    print(pass.text);
     LoginModel loginModel = LoginModel(
       username: formatLoginNumber(username.text),
       password: pass.text,
@@ -62,12 +61,15 @@ class LoginController extends GetxController {
 //        initialValue =    stringToBase64.decode(response.data['key']);
     if (response.code == 200) {
       printSuccess(initialValue);
-      Get.offAll(const NavigationView(), arguments: [number]);
+      box = await Hive.openBox('userInfo');
+      printInfo("getting user...");
+      Get.offAll(const NavigationView());
       showToastSuccess("user Logged in successfully");
+      await getUser("${response.data['key']}");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if (response.code == 400) {
       printError(response.data['error']);
-
+      Get.back();
       showToastError('${response.data['non_field_errors']}');
     }
     update();

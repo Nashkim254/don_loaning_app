@@ -6,44 +6,56 @@ import 'package:don/src/models/history_model.dart';
 import 'package:don/src/registration/otp/controller.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HistoryController extends GetxController {
   var isLoadingHistory = true.obs;
-var historyList = <History>[].obs;
+var historyList = List<History>.empty().obs;
 var token;
+var box;
 
 readToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
- token = prefs.getString('token')!;
+  box = await Hive.openBox('userInfo');
+  printSuccess("read token from box");
+ token = box.get('token')!;
+ printSuccess(token);
  update();
  return token;
 }
   @override
-  void onInit() {
-    
+  void onInit() async{
+     box = await Hive.openBox('userInfo');
+  printSuccess("read token from box");
+ token = box.get('token')!;
     readToken();
-    fetchHistory();
+    printError("not token: $token");
+    fetchHistory(token);
     super.onInit();
   }
- fetchHistory()async{
-try {
-
-  printSuccess("This is your key" + token);
-  isLoadingHistory(true);
+ Future<void> fetchHistory(String token)async{
+printInfo("loaaading...");
+  isLoadingHistory.value = true;
+  historyList.clear();
+  printInfo("cleared...");
+  printSuccess(token);
   var history = await fetchHis(token);
+  printSuccess("this is history $history");
+  printInfo("fetched...");
+  isLoadingHistory.value = false;
       printSuccess("Reached here");
   printSuccess(history);
   if(history.isNotEmpty){
-    historyList.assignAll(history);
+    history.forEach((item){
+      historyList.add(History.fromJson(item.toJson()));
+    });
     printSuccess("Reached here");
     printSuccess(historyList);
     update();
-    return historyList;
   }
-} finally {
-  isLoadingHistory(false);
-}
+   History getDetails(int index){
+    return historyList[index];
+  }
+} 
 }
 
-}

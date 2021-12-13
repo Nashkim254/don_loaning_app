@@ -32,21 +32,7 @@ class LoansHistory extends StatelessWidget {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (controller.historyList.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "No history",
-                    style: TextStyle(fontSize: 14.sp, color: blackColor),
-                  ),
-                  SizedBox(height: 20.h,),
-                  SvgPicture.asset("assets/images/his.svg")
-                ],
-              ),
-            );
-          }
+          } 
           return ListView.builder(
               shrinkWrap: true,
               itemCount: controller.historyList.length,
@@ -61,7 +47,7 @@ class LoansHistory extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                   trailing: Text(
-                    "${f.format(controller.historyList[index].requestDate!)}",
+                    f.format(controller.historyList[index].requestDate!).toString(),
                     style: theme.textTheme.bodyText1!.copyWith(
                         color: blackColor,
                         fontSize: 12.sp,

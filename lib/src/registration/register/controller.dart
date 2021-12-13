@@ -6,6 +6,7 @@ import 'package:don/src/registration/success/view.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends GetxController {
@@ -18,26 +19,35 @@ class RegisterController extends GetxController {
   String? number;
   var result = ''.obs;
   var isObscure = true.obs;
+  var box;
+  var user;
+  @override
+  void onInit() async {
+    super.onInit();
+    box = await Hive.openBox('userInfo');
+  }
 
-
-  changeObscure(){
+  changeObscure() {
     isObscure.toggle();
   }
+
   goToSuccessPagege() {
     Future.delayed(
       const Duration(seconds: 2),
-      () => Get.to( Login()),
+      () => Get.to(Login()),
     );
 
     Get.to(
       const Success(),
     );
   }
+
   var isChecked = true.obs;
-onClick(value){
-isChecked.toggle();
-update();
-}
+  onClick(value) {
+    isChecked.toggle();
+    update();
+  }
+
   /// register user
   var isLoadingBills = true.obs;
 
@@ -47,20 +57,27 @@ update();
     final SharedPreferences prefs = await _prefs;
     number = prefs.getString("number");
     result.value = number!;
+   // user = box.get('number');
+   // printSuccess("youre + $user");
     RegisterModel registerModel = RegisterModel(
       email: email.text,
       password1: pass1.text,
       password2: pass2.text,
-      username:number,
+      username: number,
     );
+    box = await Hive.openBox('userInfo');
     printError("called");
+    box.put('number',number);
+    box.put('email',email.text);
+    printInfo("saved number");
+    
     RegisterResponseModel response = await register(registerModel);
     if (response.code == 200) {
-      Get.to(()=> Login());
+      goToSuccessPagege();
       showToastSuccess("user registered successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
-    } else if(response.code == 400){
-Get.to(()=> Login());
+    } else if (response.code == 400) {
+      Get.to(() => Login());
       showToastError('User Already exists please login');
     }
     update();

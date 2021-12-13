@@ -5,16 +5,20 @@ import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/notifications_model.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationController extends GetxController {
   var isLoading = true.obs;
 var notificationList = <Notification>[].obs;
 var token;
+var box;
 
 readToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
- token = prefs.getString('token')!;
+  box = await Hive.openBox('userInfo');
+  printSuccess("read token from box");
+ token = box.get('token')!;
+ printSuccess(token);
  update();
  return token;
 }

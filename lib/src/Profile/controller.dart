@@ -3,42 +3,32 @@ import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/user_model.dart';
 import 'package:don/src/services/requests.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class UserController extends GetxController {
   var isLoading = true.obs;
- User? user;
-var token;
+String? number;
+  var result = ''.obs;
+  var data = Get.arguments;
+  var box;
+  var name= "user";
+ var token;
+var email;
 
-readToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
- token = prefs.getString('token')!;
- update();
- return token;
-}
   @override
   void onInit() {
-    
-    readToken();
-    fetchUser(token);
-    printSuccess(token);
-    printSuccess(user);
+    getUser();
     super.onInit();
     update();
   }
- fetchUser(String token)async{
-try {
-
-  printSuccess("This is your key right" + token);
-  isLoading(true);
-   user = await getUser(token);
-  printSuccess("Your user  $user");
-    printSuccess("Dataaaaa=> $user");
+   getUser() async {
+    box = await Hive.openBox('userInfo');
+    printSuccess("Just called user");
+    if(box.get('number')!=null){
+    name = box.get('number');
+    email = box.get('email');
+    }
     update();
-    return user;
-} finally {
-  isLoading(false);
-}
-}
+  }
 
 }

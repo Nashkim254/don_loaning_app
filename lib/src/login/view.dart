@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                       style: theme.textTheme.bodyText1,
                       obscureText: controller.isObscure.value,
                       decoration:  InputDecoration(
-                          label: Text('Password'),
+                          label:const Text('Password'),
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           suffix: IconButton(onPressed: (){

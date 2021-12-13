@@ -13,8 +13,10 @@ import 'package:don/src/models/phone_model.dart';
 import 'package:don/src/models/register.dart';
 import 'package:don/src/models/request_loan_model.dart';
 import 'package:don/src/models/reset_pass_model.dart';
+import 'package:don/src/models/transaction_model.dart';
 import 'package:don/src/models/user_model.dart';
 import 'package:get/get.dart' as state;
+import 'package:hive_flutter/hive_flutter.dart';
 
 FormData convertFormData(body) {
   return FormData.fromMap(body);
@@ -154,33 +156,32 @@ Future<LoginResponseModel> login(LoginModel modelData) async {
     );
 
     print('logged in: ${response.data}');
-    data = response.data;
     code = 200;
+     data = response.data;
   } on DioError catch (e) {
-    ///TODO MK ADD ERRORS
-    // MyException exection = MyException();
-    data = e.response!.data;
-    code = e.response!.statusCode;
+    
     if (e.type == DioErrorType.response) {
       print('catched');
       print(e.response!.statusCode);
       print(e.response!.data);
       data = e.response!.data;
+      code = e.response!.statusCode;
       state.Get.back();
       showToastError('${e.response!.data['non_field_errors']}');
     }
     if (e.type == DioErrorType.connectTimeout) {
-      print('check your connection');
+      state.Get.back();
       showToastError('check your connection');
     }
 
     if (e.type == DioErrorType.receiveTimeout) {
-      print('unable to connect to the server');
+      state.Get.back();
       showToastError('check your connection');
     }
 
     if (e.type == DioErrorType.other) {
-      print('Something went wrong');
+      state.Get.back();
+      showToastError('Something went wrong');
     }
   }
   return LoginResponseModel(data: data, code: code!);
@@ -345,9 +346,7 @@ Future<List<History>> fetchHis(String token) async {
     var jsonString = response.data;
     printSuccess("this was called");
     printSuccess(jsonString);
-    return historyFromJson(jsonString);
-  }else if(response.statusCode == 401){
-    showToastError("${response.statusCode}");
+    return jsonString;
   }
   throw Exception('error fetching history');
 }
@@ -403,6 +402,56 @@ Future<LoanPayResponseModel> loanRepay(LoanPayModel modelData,String token) asyn
 }
 
 
+//Transcode
+Future<TransResponseModel> transRepay(TransModel modelData,String token) async {
+  Map? data;
+  int? code;
+  try {
+    printSuccess(token);
+    Response response = await Dio().post(
+      'https://api.luchian.co.ke/mpesa/validate-trans-id',
+      data: convertFormData(modelData.toJson()),
+      options: Options(
+         headers: {
+        'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+      }
+      )
+    );
+
+    print('paying in: ${response.data}');
+    data = response.data;
+    code = 200;
+  } on DioError catch (e) {
+    ///TODO MK ADD ERRORS
+    // MyException exection = MyException();
+    data = e.response!.data;
+    code = e.response!.statusCode;
+    if (e.type == DioErrorType.response) {
+      print('catched');
+      print(e.response!.statusCode);
+      print(e.response!.data);
+      data = e.response!.data;
+      //showToastError('${e.response!.data['non_field_errors']}');
+    }
+    if (e.type == DioErrorType.connectTimeout) {
+      print('check your connection');
+      showToastError('check your connection');
+    }
+
+    if (e.type == DioErrorType.receiveTimeout) {
+      print('unable to connect to the server');
+      showToastError('check your connection');
+    }
+
+    if (e.type == DioErrorType.other) {
+      print('Something went wrong');
+    }
+  }
+  return TransResponseModel(data: data, code: code!);
+}
+
 //notifications
 Future<List<Notification>> notify(String token) async {
   var response =
@@ -424,7 +473,8 @@ Future<List<Notification>> notify(String token) async {
 }
 
 //get user
-Future<User> getUser(String token) async {
+getUser(String token) async {
+  // var box  = await Hive.openBox('userInfo');
   var response =
       await Apis.dio.get(
         "/user/",
@@ -435,10 +485,14 @@ Future<User> getUser(String token) async {
           }));
 
   if (response.statusCode == 200) {
-    var jsonString = response.data;
+    var user = response.data;
     printSuccess("request for user" + response.data);
-    return userFromJson(jsonString);
+    printSuccess(user);
+    // box.put("user", user);
+    printSuccess("user saved");
+    return user;
   }else if(response.statusCode == 401){
+    
     showToastError("${response.statusCode}");
   }
   throw Exception('error fetching history');

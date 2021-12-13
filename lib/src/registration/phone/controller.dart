@@ -7,19 +7,26 @@ import 'package:don/src/services/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PhoneController extends GetxController {
   TextEditingController phoneController = TextEditingController();
 Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late Future<String> number;
+  var box;
   // getBills
   var isLoadingBills = true.obs;
-
+@override
+void onInit()async{
+  super.onInit();
+    box = await Hive.openBox('userInfo');
+}
   phoneMethod() async {
     print("here is the code");
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoadingBills.toggle();
+    box.put("number", phoneController.text);
 final SharedPreferences prefs = await _prefs;
 number = prefs.setString("number", formatLoginNumber(phoneController.text)).then((bool success) {
   return number;

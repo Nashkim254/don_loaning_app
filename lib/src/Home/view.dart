@@ -35,6 +35,12 @@ socket.connect();
 socket.onConnect((data) => printSuccess("connected"));
 
 }
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.getUser();
+  }
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -42,11 +48,14 @@ socket.onConnect((data) => printSuccess("connected"));
         backgroundColor: pinBackgroundColor,
         appBar: AppBar(
           leading: Image.asset("assets/images/logo.png"),
-          title:  Obx( () {
+          title:  GetBuilder<HomeController>(
+            init: HomeController(),
+            builder: (context) {
               return Text(
-                    "Hi, ${controller.result.value}",
-                    style: theme.textTheme.bodyText1!.copyWith(),
-                  );
+                        "Hi, ${controller.name}",
+                        style: theme.textTheme.bodyText1!.copyWith(),
+                   
+              );
             }
           ),
             
