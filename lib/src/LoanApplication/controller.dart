@@ -114,13 +114,13 @@ request.headers.addAll(headers);
 
 
   void applyLoan(filePath,String token) async {
+    isLoading.value = true;
 String fileName = basename(filePath.path);
     // string to uri
     var uri = Uri.parse("https://api.luchian.co.ke/customer/request-loan/");
 
     // create multipart request
     var request =  http.MultipartRequest("POST", uri);
-
     // if you need more parameters to parse, add those like this. i added "user_id". here this "user_id" is a key of the API request
     var headers = {'Authorization': 'Token $token'};
      request.fields.addAll({'amount': '1000'}); 
@@ -139,6 +139,7 @@ request.headers.addAll(headers);
    
       // listen for response
       response.stream.transform(utf8.decoder).listen((value) {
+        isLoading.value=false;
         Get.to(()=> const LoanSuccess());
         showToastSuccess(value);
       });

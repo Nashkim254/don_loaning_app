@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HistoryController extends GetxController {
   var isLoadingHistory = true.obs;
-var historyList = List<History>.empty().obs;
+var historyList = <History>[].obs;
 var token;
 var box;
 
@@ -42,20 +42,19 @@ printInfo("loaaading...");
   var history = await fetchHis(token);
   printSuccess("this is history $history");
   printInfo("fetched...");
+  history.forEach((items){
+historyList.add(History.fromJson(items));
+  });
   isLoadingHistory.value = false;
       printSuccess("Reached here");
   printSuccess(history);
-  if(history.isNotEmpty){
-    history.forEach((item){
-      historyList.add(History.fromJson(item.toJson()));
-    });
     printSuccess("Reached here");
-    printSuccess(historyList);
+    printSuccess("history list $historyList");
     update();
   }
-   History getDetails(int index){
+  History getDetails(int index){
     return historyList[index];
   }
 } 
-}
+
 

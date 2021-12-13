@@ -243,7 +243,8 @@ class LoanApplication extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Center(
-                                    child: Text(
+                                    child: controller.isLoading.value ?const Center(child:CircularProgressIndicator()):
+                                    Text(
                                       "Apply Loan",
                                       style: theme.textTheme.bodyText1!.copyWith(
                                         color: cardLightColor,

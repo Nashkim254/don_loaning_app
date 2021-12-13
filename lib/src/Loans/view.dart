@@ -1,6 +1,8 @@
 import 'package:don/src/LoanApplication/view.dart';
+import 'package:don/src/Loans/controller.dart';
 import 'package:don/src/LoansPayback/view.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/helpers/dateformarter.dart';
 import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Loans extends StatelessWidget {
-  const Loans({Key? key}) : super(key: key);
+   Loans({Key? key}) : super(key: key);
   static const routeName = '/loans';
+  final controller = Get.put(LoanController());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -270,91 +273,38 @@ class Loans extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ListTile(
-                      leading: Icon(Icons.email, color: primaryColor),
-                      title: Text(
-                        "Paid back Ksh.50,000.00",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      trailing: Text(
-                        "01/12/2020",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
+                    Obx(() {
+          if (controller.isLoadingHistory.value) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } 
+          return ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.historyList.length,
+              itemBuilder: (context, int index) {
+                return Card(
+                  child: ListTile(
+                    leading: Icon(Icons.email, color: primaryColor),
+                    title: Text(
+                      "Received Ksh. ${controller.historyList[index].amount}",
+                      style: theme.textTheme.bodyText1!.copyWith(
+                          color: blackColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400),
                     ),
-                    ListTile(
-                      leading: Icon(Icons.email, color: primaryColor),
-                      title: Text(
-                        "Paid back Ksh.50,000.00",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      trailing: Text(
-                        "01/12/2020",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
+                    trailing: Text(
+                      f.format(controller.historyList[index].requestDate!).toString(),
+                      style: theme.textTheme.bodyText1!.copyWith(
+                          color: blackColor,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
                     ),
-                    ListTile(
-                      leading: Icon(Icons.email, color: primaryColor),
-                      title: Text(
-                        "Paid back Ksh.50,000.00",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      trailing: Text(
-                        "01/12/2020",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.email, color: primaryColor),
-                      title: Text(
-                        "Paid back Ksh.50,000.00",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      trailing: Text(
-                        "01/12/2020",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.email, color: primaryColor),
-                      title: Text(
-                        "Paid back Ksh.50,000.00",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      trailing: Text(
-                        "01/12/2020",
-                        style: theme.textTheme.bodyText1!.copyWith(
-                            color: blackColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    )
+                  ),
+                );
+              });
+        }
+        )
                   ],
                 ),
               ),

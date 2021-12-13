@@ -333,7 +333,7 @@ Future<RequestResponseModel> requestLoan(
 
 //loan history
 Dio _dio = Dio();
-Future<List<History>> fetchHis(String token) async {
+ fetchHis(String token) async {
   var response =
       await _dio.get("https://api.luchian.co.ke/customer/loan-history/",
           options: Options(headers: {
