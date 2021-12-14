@@ -1,4 +1,5 @@
 
+import 'package:don/src/Home/controller.dart';
 import 'package:don/src/constants/constants.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/models/loan_payback_model.dart';
@@ -12,6 +13,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 class LoanRepayController extends GetxController {
   TextEditingController amountCont = TextEditingController();
     TextEditingController transCont = TextEditingController();
+    final controller = Get.put(HomeController());
   var isLoading= true.obs;
   var number;
   var result = ''.obs;
@@ -48,9 +50,11 @@ readToken() async {
     Get.dialog(CustomDialog(), barrierDismissible: false);
     isLoading.toggle();
     box = await Hive.openBox('userInfo');
-    number = box.get("number");
+    number = controller.userdetails['username'];
+    printSuccess("We got the number");
     printSuccess(formatLoginNumber(number!));
     printSuccess(amountCont.text);
+    printSuccess(number);
     LoanPayModel loanModel = LoanPayModel(
       amount:int.parse(amountCont.text),
       phone: formatPhoneNumber(number!)

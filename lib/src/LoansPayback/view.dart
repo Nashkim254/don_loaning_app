@@ -20,7 +20,7 @@ class LoansPayback extends StatelessWidget {
               icon: Icon(Icons.arrow_back, color: blackColor),
               onPressed: () => Get.back()),
           title: Text(
-            "Loan Application",
+            "Loans",
             style: theme.textTheme.bodyText1!.copyWith(
                 color: blackColor,
                 fontSize: 16.sp,
@@ -84,7 +84,7 @@ class LoansPayback extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 21.w),
                 child: Text(
-                  " If you are not redirected to input your\n m-pesa pin in 5 seconds, kindly pay via\n paybill below and use your mobile\n number as the account number\nThen complete the process by sending us\n the M-Pesa transaction code",
+                  " If you are not redirected to input your\n m-pesa pin in 5 seconds, kindly pay via till number\n below Then complete the process by sending us\n the M-Pesa transaction code",
                   style: theme.textTheme.bodyText1!.copyWith(
                       color: primaryColor,
                       fontSize: 14,
@@ -95,7 +95,7 @@ class LoansPayback extends StatelessWidget {
                 padding: EdgeInsets.only(left: 19.w, right: 17.w),
                 child: ListTile(
                   leading: Text(
-                    "PAYBILL NUMBER",
+                    "TILL NUMBER",
                     style: theme.textTheme.bodyText1!.copyWith(
                         color: primaryColor,
                         fontSize: 12,

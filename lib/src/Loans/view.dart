@@ -59,7 +59,6 @@ class Loans extends StatelessWidget {
                         child: Text(
                           controller.historyList[0].released! ? "Approved" : "Pending",
                           style: theme.textTheme.bodyText1!.copyWith(
-                              color: primaryColor,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w600),
                         ),
