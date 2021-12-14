@@ -1,4 +1,5 @@
 import 'package:don/src/EditProfile/view.dart';
+import 'package:don/src/Home/controller.dart';
 import 'package:don/src/LoanApplication/view.dart';
 import 'package:don/src/Profile/controller.dart';
 import 'package:don/src/constants/colors.dart';
@@ -15,6 +16,7 @@ class ProfileView extends StatelessWidget {
   ProfileView({Key? key}) : super(key: key);
   static const routeName = '/profilepage';
   final controller = Get.put(UserController());
+  final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -82,7 +84,7 @@ class ProfileView extends StatelessWidget {
                                             padding: EdgeInsets.only(
                                                 top: 20.h, left: 20.w),
                                             child: Text(
-                                              controller.name,
+                                              homeController.userdetails['username'],
                                               style: theme.textTheme.bodyText1!
                                                   .copyWith(
                                                       color: blackColor,
@@ -94,7 +96,7 @@ class ProfileView extends StatelessWidget {
                                             padding: EdgeInsets.only(
                                                 top: 20.h, left: 20.w),
                                             child: Text(
-                                              controller.email!,
+                                               homeController.userdetails['email'],
                                               overflow: TextOverflow.clip,
                                               style: theme.textTheme.bodyText1!
                                                   .copyWith(

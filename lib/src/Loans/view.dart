@@ -30,6 +30,47 @@ class Loans extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+                 Padding(
+              padding: EdgeInsets.only(top: 25.h, left: 30.w, right: 30.h),
+              child: Card(
+                elevation: 5,
+                child: Container(
+                  height: 43.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: cardLightColor),
+                  child: ListTile(
+                      onTap: () {
+                        Get.to(LoansPayback());
+                      },
+                      leading: Padding(
+                        padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
+                        child:  Text(
+                          "Loan Status:",
+                          style: theme.textTheme.bodyText1!.copyWith(
+                              color: primaryColor,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      title: Padding(
+                        padding:  EdgeInsets.only(left:17.w),
+                        child: Text(
+                          controller.historyList[0].released! ? "Approved" : "Pending",
+                          style: theme.textTheme.bodyText1!.copyWith(
+                              color: primaryColor,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      trailing: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(controller.historyList[0].released! ? "assets/images/check.png" : "assets/images/pending.png"),
+                      )),
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20.h, left: 30.w, right: 30.w),
               child: Container(
@@ -81,7 +122,7 @@ class Loans extends StatelessWidget {
                               color: cardLightColor,
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -92,9 +133,9 @@ class Loans extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding:  EdgeInsets.only(right:2.w),
                                   child: Text(
-                                    "50,000.00",
+                                    controller.historyList[0].amount.toString(),
                                     style: theme.textTheme.bodyText1!.copyWith(
                                         color: primaryColor, fontSize: 11),
                                   ),
@@ -120,7 +161,7 @@ class Loans extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 13.w),
                                   child: Text(
-                                    "15/7/2021",
+                                    f.format(controller.historyList[0].expectedPayDay!),
                                     style: theme.textTheme.bodyText1!.copyWith(
                                         color: primaryColor, fontSize: 11),
                                   ),

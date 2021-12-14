@@ -10,7 +10,8 @@ class LoanController  extends GetxController{
 var historyList = <History>[].obs;
 var token;
 var box;
-
+var expected_pay_day;
+var amount;
 readToken() async {
   box = await Hive.openBox('userInfo');
   printSuccess("read token from box");
@@ -43,6 +44,7 @@ printInfo("loaaading...");
 historyList.add(History.fromJson(items));
   });
   isLoadingHistory.value = false;
+  amount =historyList[0].amount! - historyList[0].settledAmount!;
       printSuccess("Reached here");
   printSuccess(history);
     printSuccess("Reached here");

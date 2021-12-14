@@ -14,9 +14,7 @@ import 'package:don/src/models/register.dart';
 import 'package:don/src/models/request_loan_model.dart';
 import 'package:don/src/models/reset_pass_model.dart';
 import 'package:don/src/models/transaction_model.dart';
-import 'package:don/src/models/user_model.dart';
 import 'package:get/get.dart' as state;
-import 'package:hive_flutter/hive_flutter.dart';
 
 FormData convertFormData(body) {
   return FormData.fromMap(body);
@@ -474,8 +472,7 @@ Future<List<Notification>> notify(String token) async {
 }
 
 //get user
-getUser(String token) async {
-  // var box  = await Hive.openBox('userInfo');
+Future<dynamic> getUser(String token) async {
   var response =
       await Apis.dio.get(
         "/user/",
@@ -486,14 +483,11 @@ getUser(String token) async {
           }));
 
   if (response.statusCode == 200) {
-    var user = response.data;
-    printSuccess("request for user" + response.data);
-    printSuccess(user);
-    // box.put("user", user);
-    printSuccess("user saved");
-    return user;
+    var jsonString = response.data;
+    printSuccess(jsonString);
+    printSuccess(jsonString['username']);
+    return jsonString;
   }else if(response.statusCode == 401){
-    
     showToastError("${response.statusCode}");
   }
   throw Exception('error fetching history');

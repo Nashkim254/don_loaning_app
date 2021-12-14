@@ -84,7 +84,7 @@ class LoansPayback extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 21.w),
                 child: Text(
-                  "If you are not redirected to input your\n m-pesa pin in 5 seconds, kindly pay via\n paybill below and use your mobile\n number as the account number",
+                  " If you are not redirected to input your\n m-pesa pin in 5 seconds, kindly pay via\n paybill below and use your mobile\n number as the account number\nThen complete the process by sending us\n the M-Pesa transaction code",
                   style: theme.textTheme.bodyText1!.copyWith(
                       color: primaryColor,
                       fontSize: 14,
@@ -102,7 +102,7 @@ class LoansPayback extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                   trailing: Text(
-                    "123456",
+                    "9279823",
                     style: theme.textTheme.bodyText1!.copyWith(
                         color: primaryColor,
                         fontSize: 12,
@@ -110,25 +110,7 @@ class LoansPayback extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 19.w, right: 17.w),
-                child: ListTile(
-                  leading: Text(
-                    "ACCOUNT NUMBER",
-                    style: theme.textTheme.bodyText1!.copyWith(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  trailing: Text(
-                    "2547-xxxxxxxx",
-                    style: theme.textTheme.bodyText1!.copyWith(
-                        color: primaryColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
+             
               SizedBox(height: 20.h),
                   const Text(
                 "Enter the M-PESA transaction code",

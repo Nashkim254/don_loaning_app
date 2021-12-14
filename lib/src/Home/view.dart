@@ -1,10 +1,12 @@
 import 'package:don/src/Home/controller.dart';
 import 'package:don/src/LoanApplication/view.dart';
 import 'package:don/src/LoansPayback/view.dart';
+import 'package:don/src/Profile/view.dart';
 import 'package:don/src/constants/colors.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/loanHistory/view.dart';
 import 'package:don/src/navigation/controller.dart';
+import 'package:don/src/notifications/view.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +41,8 @@ socket.onConnect((data) => printSuccess("connected"));
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.getUser();
+    controller.getUserFromHive();
+    //controller.fetchUser(controller.token);
   }
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,7 @@ socket.onConnect((data) => printSuccess("connected"));
             init: HomeController(),
             builder: (context) {
               return Text(
-                        "Hi, ${controller.name}",
+                        "Hi, ${controller.userdetails['username']}",
                         style: theme.textTheme.bodyText1!.copyWith(),
                    
               );
@@ -60,8 +63,16 @@ socket.onConnect((data) => printSuccess("connected"));
           ),
             
           actions: [
-            Image.asset("assets/images/notify.png"),
-            Image.asset("assets/images/profile.png")
+            GestureDetector(
+              onTap: (){
+                Get.to(Notifications());
+                },
+              child: Image.asset("assets/images/notify.png")),
+            GestureDetector(
+              onTap: (){
+                Get.to(ProfileView());
+              },
+              child: Image.asset("assets/images/prof.png"))
           ],
         ),
         body: SingleChildScrollView(
