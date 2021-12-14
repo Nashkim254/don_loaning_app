@@ -12,6 +12,7 @@ class History {
     History({
         this.id,
         this.amount,
+        this.repayable,
         this.requestDate,
         this.expectedPayDay,
         this.filledForm,
@@ -27,6 +28,7 @@ class History {
 
     int? id;
     int? amount;
+    int? repayable;
     DateTime? requestDate;
     DateTime? expectedPayDay;
     String? filledForm;
@@ -42,6 +44,7 @@ class History {
     factory History.fromJson(Map<String, dynamic> json) => History(
         id: json["id"],
         amount: json["amount"],
+        repayable: json["repayable"],
         requestDate: DateTime.parse(json["request_date"]),
         expectedPayDay: DateTime.parse(json["expected_pay_day"]),
         filledForm: json["filled_form"],
@@ -58,6 +61,7 @@ class History {
     Map<String, dynamic> toJson() => {
         "id": id,
         "amount": amount,
+        "repayable": repayable,
         "request_date": requestDate!.toIso8601String(),
         "expected_pay_day": "${expectedPayDay!.year.toString().padLeft(4, '0')}-${expectedPayDay!.month.toString().padLeft(2, '0')}-${expectedPayDay!.day.toString().padLeft(2, '0')}",
         "filled_form": filledForm,

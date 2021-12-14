@@ -40,10 +40,7 @@ class Loans extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: cardLightColor),
-                  child: ListTile(
-                      onTap: () {
-                        Get.to(LoansPayback());
-                      },
+                  child:controller.historyList.isNotEmpty ? ListTile(
                       leading: Padding(
                         padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
                         child:  Text(
@@ -66,7 +63,9 @@ class Loans extends StatelessWidget {
                       trailing: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(controller.historyList[0].released! ? "assets/images/check.png" : "assets/images/pending.png"),
-                      )),
+                      )):  Center(child:Text("No loans at the moment",style:theme.textTheme.bodyText1!.copyWith(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600) ,)),
                 ),
               ),
             ),
@@ -134,7 +133,7 @@ class Loans extends StatelessWidget {
                                 Padding(
                                   padding:  EdgeInsets.only(right:2.w),
                                   child: Text(
-                                    controller.historyList[0].amount.toString(),
+                                  controller.historyList.isNotEmpty ?  controller.historyList[0].repayable.toString() : "0.00",
                                     style: theme.textTheme.bodyText1!.copyWith(
                                         color: primaryColor, fontSize: 11),
                                   ),
@@ -160,7 +159,7 @@ class Loans extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 13.w),
                                   child: Text(
-                                    f.format(controller.historyList[0].expectedPayDay!),
+                               controller.historyList.isNotEmpty ?     f.format(controller.historyList[0].expectedPayDay!) : "${f.format(DateTime.now())}",
                                     style: theme.textTheme.bodyText1!.copyWith(
                                         color: primaryColor, fontSize: 11),
                                   ),
