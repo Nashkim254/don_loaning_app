@@ -38,7 +38,7 @@ void onInit()async{
     print(phoneModel.phone);
     if (response.code == 200 && response.data['detail'] == 'ok') {
       print(response.data['phone']);
-      Get.to(() => Otp());
+      Get.to(() => Otp(),arguments: formatPhoneNumber(phoneController.text));
       showToastSuccess("Code Sent successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else {

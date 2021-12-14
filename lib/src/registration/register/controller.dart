@@ -1,3 +1,4 @@
+import 'package:don/src/constants/constants.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/login/view.dart';
 import 'package:don/src/models/register.dart';
@@ -55,20 +56,21 @@ class RegisterController extends GetxController {
     // final SharedPreferences prefs = await _prefs;
     // number = prefs.getString("number");
     // result.value = number!;
-   // user = box.get('number');
-   // printSuccess("youre + $user");
+    // user = box.get('number');
+    // printSuccess("youre + $user");
+    printSuccess(data[0]);
     RegisterModel registerModel = RegisterModel(
       email: email.text,
       password1: pass1.text,
       password2: pass2.text,
-      username: number,
+      username: formatLoginNumber(data[0]),
     );
     box = await Hive.openBox('userInfo');
     printError("called");
-    box.put('number',number);
-    box.put('email',email.text);
+    box.put('number', formatLoginNumber(data[0]));
+    box.put('email', email.text);
     printInfo("saved number");
-    
+
     RegisterResponseModel response = await register(registerModel);
     if (response.code == 200) {
       goToSuccessPagege();
