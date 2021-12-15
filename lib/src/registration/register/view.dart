@@ -129,7 +129,7 @@ class Register extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                         if(cont.pass1.text == cont.pass2.text){
-                            cont.registerMethod();
+                            cont.registerMethod(context);
                         }else{
                           Navigator.pop(context);
                           showToastError("Passwords do not match");

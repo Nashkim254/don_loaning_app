@@ -18,6 +18,7 @@ class RegisterController extends GetxController {
   String? number;
   var result = ''.obs;
   var isObscure = true.obs;
+  var isLoading = false.obs;
   var box;
   var user;
   @override
@@ -50,9 +51,9 @@ class RegisterController extends GetxController {
   /// register user
   var isLoadingBills = true.obs;
 
-  registerMethod() async {
+  registerMethod(BuildContext context) async {
     Get.dialog(CustomDialog(), barrierDismissible: true);
-    isLoadingBills.toggle();
+    isLoading.value = true;
     // final SharedPreferences prefs = await _prefs;
     // number = prefs.getString("number");
     // result.value = number!;
@@ -73,12 +74,14 @@ class RegisterController extends GetxController {
 
     RegisterResponseModel response = await register(registerModel);
     if (response.code == 200) {
+      isLoading.value = false;
       goToSuccessPagege();
       showToastSuccess("user registered successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
-    } else if (response.code == 400) {
-      Get.to(() => Login());
-      showToastError('User Already exists please login');
+    } else if (response.data == 400) {
+      isLoading.value = false;
+      Navigator.pop(context);
+      showToastError(response.data['password1'][0]);
     }
     update();
   }
