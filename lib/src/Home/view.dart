@@ -54,7 +54,8 @@ socket.onConnect((data) => printSuccess("connected"));
           title:  GetBuilder<HomeController>(
             init: HomeController(),
             builder: (context) {
-              return Text(
+              
+              return controller.isLoading.value ? const Text("") :Text(
                         "Hi, ${controller.userdetails['username']}",
                         style: theme.textTheme.bodyText1!.copyWith(),
                    

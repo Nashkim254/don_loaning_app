@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' as dio;
 import 'package:don/src/LoanApplication/loaan_success.dart';
 import 'package:don/src/helpers/toasts.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:open_file/open_file.dart';
@@ -13,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
 class RequestLoan extends GetxController {
+  TextEditingController amountCont = TextEditingController();
   var isLoading = false.obs;
   var isLoadingApp = false.obs;
   File? file;
@@ -80,7 +82,7 @@ String fileName = basename(filePath.path);
 
     // if you need more parameters to parse, add those like this. i added "user_id". here this "user_id" is a key of the API request
     var headers = {'Authorization': 'Token $token'};
-     request.fields.addAll({'amount': '1000'}); 
+     request.fields.addAll({'amount': amountCont.text}); 
 request.headers.addAll(headers);
     // multipart that takes file.. here this "idDocumentOne_1" is a key of the API request
    var  multipartFile = (await http.MultipartFile.fromPath(
@@ -124,7 +126,7 @@ String fileName = basename(filePath.path);
     var request =  http.MultipartRequest("POST", uri);
     // if you need more parameters to parse, add those like this. i added "user_id". here this "user_id" is a key of the API request
     var headers = {'Authorization': 'Token $token'};
-     request.fields.addAll({'amount': '1000'}); 
+     request.fields.addAll({'amount': amountCont.text}); 
 request.headers.addAll(headers);
     // multipart that takes file.. here this "idDocumentOne_1" is a key of the API request
    var  multipartFile = (await http.MultipartFile.fromPath(

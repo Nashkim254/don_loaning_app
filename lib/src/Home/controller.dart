@@ -51,7 +51,7 @@ readToken() async {
 try {
 
   printSuccess("This is your key right" + token);
-  isLoading(true);
+  isLoading.value = true;
  var  user = await getUser(token);
  printError("fetched");
  printSuccess(user);
@@ -62,7 +62,7 @@ try {
     update();
     return userdetails;
 } finally {
-  isLoading(false);
+  isLoading.value=false;
 }
 }
 }

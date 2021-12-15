@@ -36,6 +36,7 @@ class LoanApplication extends StatelessWidget {
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600),
                   ),
+
                   SizedBox(height: 26.h),
                   ListTile(
                       leading: Container(
@@ -45,6 +46,29 @@ class LoanApplication extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "1",
+                            style: theme.textTheme.bodyText1!.copyWith(
+                                color: cardLightColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                      title: Text(
+                        "Enter the amount you wish to apply",
+                        style: theme.textTheme.bodyText1!.copyWith(
+                            color: blackColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400),
+                      )),
+                  SizedBox(height: 26.h),
+                  ListTile(
+                      leading: Container(
+                        height: 21.h,
+                        width: 21.w,
+                        color: primaryColor,
+                        child: Center(
+                          child: Text(
+                            "2",
                             style: theme.textTheme.bodyText1!.copyWith(
                                 color: cardLightColor,
                                 fontSize: 12.sp,
@@ -67,7 +91,7 @@ class LoanApplication extends StatelessWidget {
                         color: primaryColor,
                         child: Center(
                           child: Text(
-                            "2",
+                            "3",
                             style: theme.textTheme.bodyText1!.copyWith(
                                 color: cardLightColor,
                                 fontSize: 12.sp,
@@ -90,7 +114,7 @@ class LoanApplication extends StatelessWidget {
                         color: primaryColor,
                         child: Center(
                           child: Text(
-                            "3",
+                            "4",
                             style: theme.textTheme.bodyText1!.copyWith(
                                 color: cardLightColor,
                                 fontSize: 12.sp,
@@ -113,7 +137,7 @@ class LoanApplication extends StatelessWidget {
                         color: primaryColor,
                         child: Center(
                           child: Text(
-                            "4",
+                            "5",
                             style: theme.textTheme.bodyText1!.copyWith(
                                 color: cardLightColor,
                                 fontSize: 12.sp,
@@ -128,6 +152,24 @@ class LoanApplication extends StatelessWidget {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       )),
+                         SizedBox(height: 20.h),
+              const Text(
+                "Enter the amount you wish to Apply, Ksh:",
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xff000000),
+                ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(left:20.w,right:20.w),
+                child: TextField(
+                  style: theme.textTheme.bodyText1,
+                  keyboardType: const TextInputType.numberWithOptions(),
+                  controller: controller.amountCont,
+                ),
+              ),
+              SizedBox(height: 20.h),
                   SizedBox(height: 45.h),
                   ShakeTransition(
                     child: Padding(
@@ -259,6 +301,7 @@ class LoanApplication extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 40.h,),
                 ],
               ),
             );
