@@ -142,9 +142,10 @@ request.headers.addAll(headers);
    
       // listen for response
       response.stream.transform(utf8.decoder).listen((value) {
+        final body = json.decode(value);
         isLoadingApp.value=false;
-        Get.to(()=> const LoanSuccess());
-        showToastSuccess(value);
+      Get.to(()=> const LoanSuccess());
+        showToastSuccess(body['details']);
       });
      if (response.statusCode == 200) {
       printSuccess(await response.stream.bytesToString());

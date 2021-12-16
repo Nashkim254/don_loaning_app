@@ -1,5 +1,6 @@
 import 'package:don/src/LoanApplication/controller.dart';
 import 'package:don/src/constants/colors.dart';
+import 'package:don/src/helpers/toasts.dart';
 import 'package:don/src/transitions/transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -270,8 +271,11 @@ class LoanApplication extends StatelessWidget {
                         elevation: 5,
                         child: GestureDetector(
                           onTap: () {
-                            print(controller.token);
+                            if(controller.amountCont.text==''){
+                              showToastError("Amount field is empty");
+                            }else{
                             controller.applyLoan(controller.file,controller.token);
+                            }
                             // Navigator.pushNamed(context, '/request');
                           },
                           child: Container(
