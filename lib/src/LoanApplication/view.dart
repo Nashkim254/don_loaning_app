@@ -61,7 +61,7 @@ class LoanApplication extends StatelessWidget {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       )),
-                  SizedBox(height: 26.h),
+                  SizedBox(height: 20.h),
                   ListTile(
                       leading: Container(
                         height: 21.h,
@@ -84,7 +84,7 @@ class LoanApplication extends StatelessWidget {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       )),
-                  SizedBox(height: 23.h),
+                  SizedBox(height: 20.h),
                   ListTile(
                       leading: Container(
                         height: 21.h,
@@ -107,7 +107,7 @@ class LoanApplication extends StatelessWidget {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       )),
-                  SizedBox(height: 23.h),
+                  SizedBox(height: 20.h),
                   ListTile(
                       leading: Container(
                         height: 21.h,
@@ -130,7 +130,7 @@ class LoanApplication extends StatelessWidget {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       )),
-                  SizedBox(height: 23.h),
+                  SizedBox(height: 15.h),
                   ListTile(
                       leading: Container(
                         height: 21.h,
@@ -153,7 +153,7 @@ class LoanApplication extends StatelessWidget {
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       )),
-                         SizedBox(height: 20.h),
+                         SizedBox(height: 15.h),
               const Text(
                 "Enter the amount you wish to Apply, Ksh:",
                 style: TextStyle(

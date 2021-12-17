@@ -17,23 +17,26 @@ class OtpController extends GetxController {
   bool _keyboardVisible = false;
   final TextEditingController otpController = TextEditingController();
   var data = Get.arguments;
-   String? number;
-   var box;
-   var result = ''.obs;
+  String? number;
+  var box;
+  var result = ''.obs;
   void onKeyboardTap(String value) {
-    text = text + value;
-    if (text.length == 6) {
+    otpController.text =otpController.text + value;
+    if (otpController.text.length == 6) {
       otpMethod();
     }
     update();
   }
-@override
-void onInit()async{
-  super.onInit();
+
+  @override
+  void onInit() async {
+    super.onInit();
     box = await Hive.openBox('userInfo');
-}
+  }
+
   updateSelect() {
-    text = text.substring(0, text.length - 1);
+    otpController.text =
+        otpController.text.substring(0, otpController.text.length - 1);
     update();
   }
 
@@ -57,7 +60,7 @@ void onInit()async{
     print(isLoadingBills);
     print(text);
     OtpModel otpModel = OtpModel(
-      code: text,
+      code: otpController.text,
       phone: formatPhoneNumber(number!),
     );
     OtpResponseModel response = await verifyOtp(otpModel);
@@ -69,10 +72,11 @@ void onInit()async{
       Get.to(() => Register(), arguments: [otpModel.phone]);
       showToastSuccess("user verified successfully");
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
+    }else if(response.code==400){
+      Get.back();
+      showToastError(response.data['code']);
     } else {
-      print(response.code);
-      print(response.data['error']);
-
+      Get.back();
       showToastError('Error occured');
     }
     update();

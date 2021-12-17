@@ -102,7 +102,7 @@ socket.onConnect((data) => printSuccess("connected"));
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 9.0, left: 20),
-                        child: Text("Ksh. 10,000.00",
+                        child: Text("Ksh. 70,000.00",
                             style: theme.textTheme.bodyText1!
                                 .copyWith(color: cardLightColor, fontSize: 18)),
                       ),

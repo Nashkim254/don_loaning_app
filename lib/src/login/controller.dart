@@ -68,7 +68,7 @@ void onInit()async{
     } else if (response.code == 400) {
       printError(response.data['error']);
       Get.back();
-      showToastError('${response.data['non_field_errors']}');
+      showToastError('${response.data['non_field_errors'][0]}');
     }
     update();
   }

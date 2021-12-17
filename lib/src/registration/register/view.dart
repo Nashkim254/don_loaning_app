@@ -132,6 +132,7 @@ class Register extends StatelessWidget {
                             cont.registerMethod(context);
                         }else{
                           Navigator.pop(context);
+                          Navigator.pop(context);
                           showToastError("Passwords do not match");
                         }
                         
