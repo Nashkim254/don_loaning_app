@@ -66,7 +66,7 @@ readToken() async {
     if (response.code == 200) {
       //Get.offAll(const NavigationView(), arguments: [number]);
       Get.back();
-      showToastSuccess("Paid in successfully");
+      showToastSuccess(response.data['success']);
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if (response.code == 400) {
       print(response.code);
@@ -99,10 +99,10 @@ readToken() async {
     print("code 2");
 
     print(response.data);
-    if (response.code == 200) {
+    if (response.code == 200 && response.data['success']==false) {
       //Get.offAll(const NavigationView(), arguments: [number]);
       Get.back();
-      showToastSuccess("Transaction completed successfully");
+      showToastError(response.data['message']);
       // Get.to(FetchedInvoiceView(), arguments: [bill]);
     } else if (response.code == 400) {
         Get.back();
@@ -111,6 +111,9 @@ readToken() async {
       printError(token);
       Get.back();
       showToastError("${response.data['detail']}");
+    }else if(response.code ==200 && response.data['success']==true){
+      Get.back();
+      showToastSuccess("Transaction completed successfully");
     }
     update();
   }
